@@ -1,0 +1,144 @@
+# Command-line detection patterns (Python regular expressions, case-insensitive).
+# Each pattern explains WHY it is suspicious so findings are self-documenting.
+# points feed the explainable risk score (see rules/scoring.yaml).
+
+patterns:
+  - id: PS_ENCODED_COMMAND
+    regex: '(powershell|pwsh)(\.exe)?["'']?(\s.*)?\s[-/]e(c|n|nc|nco|ncod|ncode|ncoded|ncodedc|ncodedcommand)?\s+["'']?[A-Za-z0-9+/=]{16,}'
+    severity: high
+    points: 15
+    attack: [T1059.001, T1027]
+    why: PowerShell is executing a Base64-encoded command. Encoding hides the script content from casual inspection and command-line logging and is common in malicious loaders, although some administration tools also use it.
+
+  - id: PS_HIDDEN_WINDOW
+    regex: '(powershell|pwsh).*\s[-/]w(indowstyle|indow|in)?\s+h(idden)?\b'
+    severity: medium
+    points: 8
+    attack: [T1564.003]
+    why: PowerShell was started with a hidden window, preventing the logged-on user from seeing it.
+
+  - id: PS_EXECUTION_POLICY_BYPASS
+    regex: '(powershell|pwsh).*\s[-/](ep|exec|executionpolicy)\s+(bypass|unrestricted)'
+    severity: medium
+    points: 6
+    attack: [T1059.001]
+    why: The PowerShell execution policy was explicitly bypassed for this invocation.
+
+  - id: PS_NO_PROFILE_NONINTERACTIVE
+    regex: '(powershell|pwsh).*\s[-/](nop|noprofile)\b.*\s[-/](noni|noninteractive)\b'
+    severity: low
+    points: 4
+    attack: [T1059.001]
+    why: PowerShell was launched non-interactively without a profile - typical of automated or scripted launches.
+
+  - id: DOWNLOAD_CRADLE
+    regex: '(downloadstring|downloadfile|downloaddata|net\.webclient|invoke-webrequest|\biwr\b|start-bitstransfer|invoke-restmethod|\birm\b\s+http)'
+    severity: high
+    points: 15
+    attack: [T1105, T1059.001]
+    why: The command downloads content from a remote location, a common first stage of malware delivery ("download cradle").
+
+  - id: INVOKE_EXPRESSION
+    regex: '\b(iex|invoke-expression)\b'
+    severity: medium
+    points: 8
+    attack: [T1059.001]
+    why: Invoke-Expression executes a string as code, frequently paired with download cradles to run fileless payloads.
+
+  - id: MSHTA_REMOTE_OR_SCRIPT
+    regex: 'mshta(\.exe)?["'']?\s+["'']?(https?:|javascript:|vbscript:)'
+    severity: high
+    points: 15
+    attack: [T1218.005]
+    why: mshta.exe is executing remote or inline script - a well-documented signed-binary proxy execution technique.
+
+  - id: REGSVR32_SCRIPTLET
+    regex: 'regsvr32(\.exe)?.*\s/i:\s*["'']?(https?:|\\\\).*scrobj'
+    severity: high
+    points: 15
+    attack: [T1218.010]
+    why: regsvr32.exe loading a remote scriptlet via scrobj.dll ("Squiblydoo") executes code through a signed Windows binary.
+
+  - id: RUNDLL32_SCRIPT
+    regex: 'rundll32(\.exe)?.*(javascript:|mshtml,runhtmlapplication)'
+    severity: high
+    points: 15
+    attack: [T1218.011]
+    why: rundll32.exe is being used to execute script content, a known proxy-execution technique.
+
+  - id: RUNDLL32_USER_WRITABLE_DLL
+    regex: 'rundll32(\.exe)?["'']?\s+["'']?[a-z]:\\(users\\[^\\]+\\appdata|users\\public|windows\\temp|programdata|perflogs)[^,]*\.(dll|dat|tmp|bin|ocx)'
+    severity: medium
+    points: 10
+    attack: [T1218.011]
+    why: rundll32.exe is loading a DLL from a user-writable location rather than a system directory.
+
+  - id: CERTUTIL_DOWNLOAD_DECODE
+    regex: 'certutil(\.exe)?.*\s[-/](urlcache|decode|decodehex)\b'
+    severity: high
+    points: 15
+    attack: [T1105, T1140]
+    why: certutil.exe is being used to download or decode files - functionality abused to stage payloads.
+
+  - id: BITSADMIN_TRANSFER
+    regex: 'bitsadmin(\.exe)?.*\s/(transfer|addfile)\b'
+    severity: medium
+    points: 10
+    attack: [T1197]
+    why: BITS is being used to transfer files, which can be abused for stealthy download and persistence.
+
+  - id: WMIC_PROCESS_CREATE
+    regex: 'wmic(\.exe)?.*process\s+call\s+create'
+    severity: medium
+    points: 10
+    attack: [T1047]
+    why: WMIC is creating a process, a technique used for execution and lateral movement.
+
+  - id: SCRIPT_FROM_USER_WRITABLE
+    regex: '(wscript|cscript|cmd|powershell)(\.exe)?.*[a-z]:\\(users\\[^\\]+\\appdata\\local\\temp|users\\public|windows\\temp|programdata)\\[^"'' ]+\.(js|jse|vbs|vbe|wsf|hta|bat|cmd|ps1)'
+    severity: medium
+    points: 10
+    attack: [T1059]
+    why: A script is executed from a temporary or world-writable directory, a common staging location for droppers.
+
+  - id: SHADOW_COPY_DELETION
+    regex: '(vssadmin(\.exe)?.*delete\s+shadows|wmic(\.exe)?.*shadowcopy\s+delete|wbadmin(\.exe)?.*delete\s+catalog)'
+    severity: high
+    points: 20
+    attack: [T1490]
+    why: Volume shadow copies or backup catalogues are being deleted - strongly associated with ransomware preparing to prevent recovery.
+
+  - id: BOOT_RECOVERY_DISABLED
+    regex: 'bcdedit(\.exe)?.*(recoveryenabled\s+no|bootstatuspolicy\s+ignoreallfailures)'
+    severity: high
+    points: 15
+    attack: [T1490]
+    why: Windows boot recovery is being disabled, another common ransomware pre-encryption step.
+
+  - id: SCHEDULED_TASK_CREATE
+    regex: 'schtasks(\.exe)?.*\s/create\b'
+    severity: medium
+    points: 8
+    attack: [T1053.005]
+    why: A scheduled task is being created - a common persistence mechanism (also used legitimately by installers).
+
+  - id: RUN_KEY_MODIFICATION
+    regex: 'reg(\.exe)?\s+add\s+.*\\currentversion\\(run|runonce)\b'
+    severity: medium
+    points: 10
+    attack: [T1547.001]
+    why: A Run/RunOnce registry key is being modified, which causes a program to start at logon (persistence).
+
+  - id: LOCAL_ACCOUNT_CREATION
+    regex: '\bnet1?(\.exe)?\s+(user\s+\S+\s+\S+\s+/add|localgroup\s+administrators\s+\S+\s+/add)'
+    severity: medium
+    points: 10
+    attack: [T1136.001, T1098]
+    why: A local account is being created or added to the Administrators group.
+
+  - id: DEFENDER_TAMPERING
+    regex: '(set-mppreference.*-disable(realtimemonitoring|ioavprotection|behaviormonitoring)\s+\$?true|add-mppreference.*-exclusion(path|process))'
+    severity: high
+    points: 15
+    attack: [T1562.001]
+    why: Microsoft Defender protections are being disabled or exclusions added.

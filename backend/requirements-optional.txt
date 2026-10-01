@@ -1,0 +1,3 @@
+# Optional extras
+yara-python>=4.5.1        # YARA rule compilation check + windows.vadyarascan support
+psycopg[binary]>=3.1.18   # PostgreSQL driver (DATABASE_URL=postgresql+psycopg://...)

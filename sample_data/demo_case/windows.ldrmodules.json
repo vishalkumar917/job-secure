@@ -1,0 +1,65 @@
+[
+ {
+  "Pid": 5120,
+  "Process": "rundll32.exe",
+  "Base": 140694559653888,
+  "InLoad": true,
+  "InInit": false,
+  "InMem": true,
+  "MappedPath": "\\Windows\\System32\\rundll32.exe"
+ },
+ {
+  "Pid": 5120,
+  "Process": "rundll32.exe",
+  "Base": 140694561751040,
+  "InLoad": true,
+  "InInit": true,
+  "InMem": true,
+  "MappedPath": "\\Users\\jdoe\\AppData\\Local\\Temp\\msupd.dll"
+ },
+ {
+  "Pid": 5120,
+  "Process": "rundll32.exe",
+  "Base": 140694564896768,
+  "InLoad": false,
+  "InInit": false,
+  "InMem": false,
+  "MappedPath": "\\Users\\jdoe\\AppData\\Local\\Temp\\wmcore.dll"
+ },
+ {
+  "Pid": 5120,
+  "Process": "rundll32.exe",
+  "Base": 140724908851200,
+  "InLoad": true,
+  "InInit": true,
+  "InMem": true,
+  "MappedPath": "\\Windows\\System32\\ntdll.dll"
+ },
+ {
+  "Pid": 4528,
+  "Process": "svchost.exe",
+  "Base": 140694568042496,
+  "InLoad": true,
+  "InInit": false,
+  "InMem": true,
+  "MappedPath": "\\Users\\Public\\svchost.exe"
+ },
+ {
+  "Pid": 4528,
+  "Process": "svchost.exe",
+  "Base": 140694570139648,
+  "InLoad": true,
+  "InInit": true,
+  "InMem": true,
+  "MappedPath": "\\Users\\jdoe\\AppData\\Local\\Temp\\msupd.dll"
+ },
+ {
+  "Pid": 4388,
+  "Process": "powershell.exe",
+  "Base": 140694540779520,
+  "InLoad": true,
+  "InInit": false,
+  "InMem": true,
+  "MappedPath": "\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
+ }
+]

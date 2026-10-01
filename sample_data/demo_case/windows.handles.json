@@ -1,0 +1,83 @@
+[
+ {
+  "PID": 4528,
+  "Process": "svchost.exe",
+  "Offset": 18446638520828166144,
+  "HandleValue": 4,
+  "Type": "Process",
+  "GrantedAccess": 4112,
+  "Name": "lsass.exe Pid 660"
+ },
+ {
+  "PID": 4528,
+  "Process": "svchost.exe",
+  "Offset": 18446638520828166192,
+  "HandleValue": 8,
+  "Type": "Key",
+  "GrantedAccess": 131097,
+  "Name": "MACHINE\\SOFTWARE\\MICROSOFT\\WINDOWS\\CURRENTVERSION\\RUN"
+ },
+ {
+  "PID": 4528,
+  "Process": "svchost.exe",
+  "Offset": 18446638520828166240,
+  "HandleValue": 12,
+  "Type": "Mutant",
+  "GrantedAccess": 2031617,
+  "Name": "Global\\MSUpd_7f3a2c"
+ },
+ {
+  "PID": 4528,
+  "Process": "svchost.exe",
+  "Offset": 18446638520828166288,
+  "HandleValue": 16,
+  "Type": "File",
+  "GrantedAccess": 1180063,
+  "Name": "\\Device\\HarddiskVolume3\\Users\\jdoe\\AppData\\Local\\Temp\\msupd.dll"
+ },
+ {
+  "PID": 4528,
+  "Process": "svchost.exe",
+  "Offset": 18446638520828166336,
+  "HandleValue": 20,
+  "Type": "Thread",
+  "GrantedAccess": 2097151,
+  "Name": "Tid 6050 Pid 6044"
+ },
+ {
+  "PID": 4388,
+  "Process": "powershell.exe",
+  "Offset": 18446638520828166384,
+  "HandleValue": 4,
+  "Type": "File",
+  "GrantedAccess": 1048608,
+  "Name": "\\Device\\HarddiskVolume3\\Users\\jdoe\\Downloads"
+ },
+ {
+  "PID": 4388,
+  "Process": "powershell.exe",
+  "Offset": 18446638520828166432,
+  "HandleValue": 8,
+  "Type": "Process",
+  "GrantedAccess": 2097151,
+  "Name": "svchost.exe Pid 4528"
+ },
+ {
+  "PID": 5120,
+  "Process": "rundll32.exe",
+  "Offset": 18446638520828166480,
+  "HandleValue": 4,
+  "Type": "File",
+  "GrantedAccess": 1179785,
+  "Name": "\\Device\\HarddiskVolume3\\Users\\jdoe\\AppData\\Local\\Temp\\msupd.dll"
+ },
+ {
+  "PID": 1868,
+  "Process": "MsMpEng.exe",
+  "Offset": 18446638520828166528,
+  "HandleValue": 4,
+  "Type": "Process",
+  "GrantedAccess": 5136,
+  "Name": "lsass.exe Pid 660"
+ }
+]

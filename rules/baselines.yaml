@@ -1,0 +1,282 @@
+# Windows process baselines used by the detection engine.
+#
+# paths:        expected image locations (matched case-insensitively against the
+#               path tail, drive letter / \Device\HarddiskVolumeN prefix ignored)
+# parents:      expected parent image names ("system" = PID 4)
+# allow_orphan: the parent normally exits, so a missing parent is NOT anomalous
+# singleton:    only one instance is expected per system (per boot)
+#
+# Sources: SANS "Hunt Evil" poster, Microsoft documentation of the Windows boot
+# process. Adjust for your environment (e.g. Server roles, EDR products).
+
+system_processes:
+  system:
+    paths: []
+    parents: []
+    allow_orphan: true
+    singleton: true
+  smss.exe:
+    paths: ['\windows\system32\smss.exe']
+    parents: [system, smss.exe]
+    allow_orphan: false
+    singleton: false   # master smss spawns per-session child instances that exit
+  csrss.exe:
+    paths: ['\windows\system32\csrss.exe']
+    parents: [smss.exe]
+    allow_orphan: true
+    singleton: false
+  wininit.exe:
+    paths: ['\windows\system32\wininit.exe']
+    parents: [smss.exe]
+    allow_orphan: true
+    singleton: true
+  winlogon.exe:
+    paths: ['\windows\system32\winlogon.exe']
+    parents: [smss.exe]
+    allow_orphan: true
+    singleton: false
+  services.exe:
+    paths: ['\windows\system32\services.exe']
+    parents: [wininit.exe]
+    allow_orphan: false
+    singleton: true
+  lsass.exe:
+    paths: ['\windows\system32\lsass.exe']
+    parents: [wininit.exe]
+    allow_orphan: false
+    singleton: true
+  lsaiso.exe:
+    paths: ['\windows\system32\lsaiso.exe']
+    parents: [wininit.exe]
+    allow_orphan: false
+    singleton: true
+  svchost.exe:
+    paths: ['\windows\system32\svchost.exe', '\windows\syswow64\svchost.exe']
+    parents: [services.exe, msmpeng.exe]
+    allow_orphan: false
+    singleton: false
+  spoolsv.exe:
+    paths: ['\windows\system32\spoolsv.exe']
+    parents: [services.exe]
+    allow_orphan: false
+    singleton: true
+  taskhostw.exe:
+    paths: ['\windows\system32\taskhostw.exe']
+    parents: [svchost.exe]
+    allow_orphan: false
+    singleton: false
+  runtimebroker.exe:
+    paths: ['\windows\system32\runtimebroker.exe']
+    parents: [svchost.exe]
+    allow_orphan: false
+    singleton: false
+  dwm.exe:
+    paths: ['\windows\system32\dwm.exe']
+    parents: [winlogon.exe]
+    allow_orphan: true
+    singleton: false
+  userinit.exe:
+    paths: ['\windows\system32\userinit.exe']
+    parents: [winlogon.exe]
+    allow_orphan: true
+    singleton: false
+  explorer.exe:
+    paths: ['\windows\explorer.exe']
+    parents: [userinit.exe]
+    allow_orphan: true
+    singleton: false
+  sihost.exe:
+    paths: ['\windows\system32\sihost.exe']
+    parents: [svchost.exe]
+    allow_orphan: false
+    singleton: false
+  conhost.exe:
+    paths: ['\windows\system32\conhost.exe']
+    parents: []        # any parent
+    allow_orphan: true
+    singleton: false
+  fontdrvhost.exe:
+    paths: ['\windows\system32\fontdrvhost.exe']
+    parents: [wininit.exe, winlogon.exe]
+    allow_orphan: true
+    singleton: false
+  searchindexer.exe:
+    paths: ['\windows\system32\searchindexer.exe']
+    parents: [services.exe]
+    allow_orphan: false
+    singleton: true
+  wmiprvse.exe:
+    paths: ['\windows\system32\wbem\wmiprvse.exe', '\windows\syswow64\wbem\wmiprvse.exe']
+    parents: [svchost.exe]
+    allow_orphan: false
+    singleton: false
+
+# Parents that should rarely spawn shells, script hosts or LOLBins.
+document_and_browser_apps:
+  - winword.exe
+  - excel.exe
+  - powerpnt.exe
+  - outlook.exe
+  - msaccess.exe
+  - mspub.exe
+  - onenote.exe
+  - acrord32.exe
+  - acrobat.exe
+  - foxitreader.exe
+  - wordpad.exe
+  - iexplore.exe
+  - w3wp.exe
+  - sqlservr.exe
+  - httpd.exe
+  - tomcat9.exe
+
+shells_and_script_hosts:
+  - cmd.exe
+  - powershell.exe
+  - pwsh.exe
+  - wscript.exe
+  - cscript.exe
+  - mshta.exe
+  - rundll32.exe
+  - regsvr32.exe
+  - certutil.exe
+  - bitsadmin.exe
+  - msbuild.exe
+  - installutil.exe
+  - wmic.exe
+
+# Processes that should never spawn interactive shells.
+sensitive_parents:
+  - lsass.exe
+  - winlogon.exe
+  - spoolsv.exe
+  - smss.exe
+  - csrss.exe
+
+# User-writable / staging locations. Severity reflects how unusual it is for
+# legitimate software to execute from there.
+suspicious_path_patterns:
+  - pattern: '\\appdata\\local\\temp\\'
+    label: user temporary directory
+    severity: medium
+    points: 20
+  - pattern: '\\windows\\temp\\'
+    label: system temporary directory
+    severity: medium
+    points: 20
+  - pattern: '\\users\\public\\'
+    label: Public user profile (world-writable)
+    severity: medium
+    points: 20
+  - pattern: '\\\$recycle\.bin\\'
+    label: Recycle Bin
+    severity: high
+    points: 25
+  - pattern: '\\perflogs\\'
+    label: PerfLogs directory (world-writable)
+    severity: medium
+    points: 20
+  - pattern: '\\programdata\\[^\\]+\.(exe|dll|scr)$'
+    label: root of ProgramData
+    severity: medium
+    points: 15
+  - pattern: '\\downloads\\'
+    label: user Downloads folder
+    severity: low
+    points: 10
+  - pattern: '\\appdata\\roaming\\'
+    label: roaming AppData
+    severity: low
+    points: 10
+  - pattern: '\\windows\\tasks\\'
+    label: Windows\Tasks directory
+    severity: medium
+    points: 20
+
+# Processes that legitimately generate executable private memory (JIT engines,
+# AV/EDR, .NET hosts). malfind hits in these get reduced confidence.
+jit_or_security_processes:
+  - msmpeng.exe
+  - mssense.exe
+  - chrome.exe
+  - msedge.exe
+  - firefox.exe
+  - msedgewebview2.exe
+  - teams.exe
+  - ms-teams.exe
+  - slack.exe
+  - code.exe
+  - powershell.exe
+  - pwsh.exe
+  - dotnet.exe
+  - java.exe
+  - javaw.exe
+  - node.exe
+  - searchapp.exe
+  - smartscreen.exe
+  - officeclicktorun.exe
+
+# Processes allowed to hold memory-read handles on lsass.exe.
+lsass_handle_allowlist:
+  - system
+  - csrss.exe
+  - wininit.exe
+  - services.exe
+  - lsass.exe
+  - svchost.exe
+  - msmpeng.exe
+  - mssense.exe
+  - wmiprvse.exe
+  - taskmgr.exe
+  - procexp64.exe
+
+# Processes for which SeDebugPrivilege being enabled is expected.
+debug_privilege_allowlist:
+  - system
+  - smss.exe
+  - csrss.exe
+  - wininit.exe
+  - services.exe
+  - lsass.exe
+  - winlogon.exe
+  - svchost.exe
+  - msmpeng.exe
+  - taskmgr.exe
+
+# Core Windows DLLs - loading these from outside system directories is a strong
+# sideloading/masquerading indicator.
+system_dlls:
+  - ntdll.dll
+  - kernel32.dll
+  - kernelbase.dll
+  - user32.dll
+  - advapi32.dll
+  - ws2_32.dll
+  - wininet.dll
+  - winhttp.dll
+  - ole32.dll
+  - oleaut32.dll
+  - shell32.dll
+  - crypt32.dll
+  - version.dll
+  - dbghelp.dll
+  - amsi.dll
+  - secur32.dll
+  - samlib.dll
+system_dll_dirs:
+  - '\windows\system32\'
+  - '\windows\syswow64\'
+  - '\windows\winsxs\'
+
+# Legitimate binaries whose names are within a small edit distance of a system
+# process name (prevents typo-squat false positives).
+lookalike_allowlist:
+  - taskhost.exe
+  - taskhostex.exe
+  - taskhostw.exe
+  - dashost.exe
+  - wudfhost.exe
+  - dllhost.exe
+  - sihost.exe
+  - lsaiso.exe
+  - smartscreen.exe

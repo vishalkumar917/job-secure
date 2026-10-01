@@ -1,0 +1,82 @@
+[
+ {
+  "Variable": "Kernel Base",
+  "Value": 272688815800320
+ },
+ {
+  "Variable": "DTB",
+  "Value": 1757184
+ },
+ {
+  "Variable": "Symbols",
+  "Value": "file:///volatility3/symbols/windows/ntkrnlmp.pdb/9B2F0A4E7C1D4E2A8F3B6C5D4E3F2A1B-1.json.xz"
+ },
+ {
+  "Variable": "Is64Bit",
+  "Value": true
+ },
+ {
+  "Variable": "IsPAE",
+  "Value": false
+ },
+ {
+  "Variable": "layer_name",
+  "Value": "0 WindowsIntel32e"
+ },
+ {
+  "Variable": "memory_layer",
+  "Value": "1 FileLayer"
+ },
+ {
+  "Variable": "KdVersionBlock",
+  "Value": 272688828445696
+ },
+ {
+  "Variable": "Major/Minor",
+  "Value": "15.19041"
+ },
+ {
+  "Variable": "MachineType",
+  "Value": 34404
+ },
+ {
+  "Variable": "KeNumberProcessors",
+  "Value": 2
+ },
+ {
+  "Variable": "SystemTime",
+  "Value": "2026-03-14T10:42:17+00:00"
+ },
+ {
+  "Variable": "NtSystemRoot",
+  "Value": "C:\\Windows"
+ },
+ {
+  "Variable": "NtProductType",
+  "Value": "NtProductWinNt"
+ },
+ {
+  "Variable": "NtMajorVersion",
+  "Value": 10
+ },
+ {
+  "Variable": "NtMinorVersion",
+  "Value": 0
+ },
+ {
+  "Variable": "PE MajorOperatingSystemVersion",
+  "Value": 10
+ },
+ {
+  "Variable": "PE MinorOperatingSystemVersion",
+  "Value": 0
+ },
+ {
+  "Variable": "PE Machine",
+  "Value": 34404
+ },
+ {
+  "Variable": "PE TimeDateStamp",
+  "Value": "Mon Dec  9 11:07:51 2019"
+ }
+]

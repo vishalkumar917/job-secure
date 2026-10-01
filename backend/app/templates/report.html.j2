@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forensic Report {{ d.case.number }}</title>
+<style>
+  :root { --ink:#101828; --muted:#475467; --line:#d0d5dd; --bg:#ffffff; --panel:#f9fafb; --accent:#1d4ed8; }
+  * { box-sizing: border-box; }
+  body { font: 14px/1.55 -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--ink);
+         background: var(--bg); margin: 0; padding: 0 16px 48px; }
+  main { max-width: 1040px; margin: 0 auto; }
+  header { border-bottom: 2px solid var(--ink); padding: 28px 0 14px; margin-bottom: 20px; }
+  h1 { font-size: 26px; margin: 0 0 4px; }
+  h2 { font-size: 18px; border-bottom: 1px solid var(--line); padding-bottom: 6px; margin-top: 34px; }
+  h3 { font-size: 15px; margin: 18px 0 6px; }
+  h4 { font-size: 14px; margin: 14px 0 4px; }
+  .muted { color: var(--muted); }
+  .demo { background: #b42318; color: #fff; text-align: center; font-weight: 700; padding: 10px; letter-spacing: .04em;
+          margin: 0 -16px; }
+  .kv { display: grid; grid-template-columns: 220px 1fr; gap: 4px 16px; }
+  .kv div:nth-child(odd) { color: var(--muted); }
+  .mono, code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 12.5px; word-break: break-all; }
+  .tbl { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: 12.5px; margin: 8px 0; }
+  th, td { border: 1px solid var(--line); padding: 5px 7px; text-align: left; vertical-align: top; }
+  th { background: var(--panel); }
+  .sev { display: inline-block; padding: 1px 8px; border-radius: 10px; color: #fff; font-size: 11px; font-weight: 600; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+  .card { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; background: var(--panel); }
+  .card .v { font-size: 22px; font-weight: 700; }
+  .finding { border: 1px solid var(--line); border-left-width: 4px; border-radius: 6px; padding: 10px 14px; margin: 10px 0; }
+  .note { background: #fffaeb; border: 1px solid #fedf89; padding: 10px 14px; border-radius: 6px; }
+  blockquote { margin: 6px 0; padding: 6px 12px; border-left: 3px solid #b42318; background: #fef3f2; }
+  @media print { .demo { margin: 0; } h2 { break-after: avoid; } .finding { break-inside: avoid; } }
+</style>
+</head>
+<body>
+{% if d.is_demo %}<div class="demo">DEMO DATA &mdash; NOT REAL FORENSIC EVIDENCE</div>{% endif %}
+<main>
+<header>
+  <h1>Windows Memory Forensics Report</h1>
+  <div>Case <strong>{{ d.case.number }}</strong> &mdash; {{ d.case.title }}</div>
+  <div class="muted">Generated {{ d.generated_at }} by {{ d.generated_by }} &middot; Analysis #{{ d.analysis.id }}</div>
+</header>
+
+<h2>1. Executive Summary</h2>
+<div class="cards">
+  <div class="card"><div class="muted">Overall risk</div><div class="v" style="color: {{ band_colors.get(d.analysis.overall_risk_band, '#101828') }}">{{ d.analysis.overall_risk_score }} &middot; {{ d.analysis.overall_risk_band }}</div></div>
+  <div class="card"><div class="muted">Processes</div><div class="v">{{ d.summary.total_processes or 0 }}</div></div>
+  <div class="card"><div class="muted">Suspicious processes</div><div class="v">{{ d.summary.suspicious_processes or 0 }}</div></div>
+  <div class="card"><div class="muted">High/critical findings</div><div class="v">{{ d.summary.high_severity_findings or 0 }}</div></div>
+  <div class="card"><div class="muted">Injected memory indicators</div><div class="v">{{ d.summary.injected_memory_indicators or 0 }}</div></div>
+  <div class="card"><div class="muted">IOCs</div><div class="v">{{ d.summary.iocs or 0 }}</div></div>
+</div>
+{% if d.executive_summary %}<div>{{ d.executive_summary | md | safe }}</div>
+<p class="muted">Summary produced by: {{ d.executive_summary_provider }} (grounded in stored evidence; IDs in brackets reference evidence items).</p>{% endif %}
+<p class="note">The risk score is this project's analytical prioritisation model. It is not an authoritative malware verdict.</p>
+
+<h2>2. Case Information</h2>
+<div class="kv">
+  <div>Case number</div><div>{{ d.case.number }}</div>
+  <div>Title</div><div>{{ d.case.title }}</div>
+  <div>Description</div><div>{{ d.case.description or '-' }}</div>
+  <div>Investigator</div><div>{{ d.case.investigator or '-' }}</div>
+</div>
+
+<h2>3. Memory Image Information</h2>
+<div class="kv">
+  <div>Evidence file</div><div>{{ d.image.filename }}</div>
+  <div>Size</div><div>{{ "{:,}".format(d.image.size_bytes) }} bytes</div>
+  <div>Format</div><div>{{ d.image.format }}</div>
+  <div>Uploaded (UTC)</div><div>{{ d.image.uploaded_at }}</div>
+  <div>Intake validation</div><div>{{ d.image.validation_notes | join('; ') }}</div>
+</div>
+
+<h2>4. SHA-256 Hash</h2>
+<p class="mono">{{ d.image.sha256 }}</p>
+<p>Integrity verified before analysis: <strong>{{ d.analysis.hash_verified_before }}</strong>; after analysis: <strong>{{ d.analysis.hash_verified_after }}</strong>.</p>
+
+<h2>5. Environment</h2>
+{% set os = d.image.os_info or {} %}
+<div class="kv">
+  <div>Operating system</div><div>{{ os.os_name or 'unknown' }}</div>
+  <div>NT version / build</div><div>{{ os.nt_version or 'unknown' }} / {{ os.build or 'unknown' }}</div>
+  <div>Architecture</div><div>{{ os.architecture or 'unknown' }}</div>
+  <div>Kernel base</div><div class="mono">{{ os.kernel_base or 'unknown' }}</div>
+  <div>Symbols</div><div class="mono">{{ os.suggested_symbols or 'unknown' }}</div>
+  <div>System time</div><div>{{ os.system_time or 'unknown' }}</div>
+  <div>Identification confidence</div><div>{{ os.confidence or 'low' }}{% if os.uncertain %} (uncertain: {{ os.uncertain | join(', ') }}){% endif %}</div>
+  <div>Volatility</div><div>{{ d.analysis.volatility_version or 'unknown' }}</div>
+</div>
+
+<h2>6. Analysis Methodology</h2>
+<ol>{% for m in d.methodology %}<li>{{ m }}</li>{% endfor %}</ol>
+<div class="tbl"><table><tr><th>Plugin</th><th>Stage</th><th>Status</th><th>Rows</th><th>Duration (ms)</th><th>Args</th><th>Error</th></tr>
+{% for p in d.plugins %}<tr><td class="mono">{{ p.plugin }}</td><td>{{ p.stage }}</td><td>{{ p.status }}</td><td>{{ p.rows }}</td><td>{{ p.duration_ms or '' }}</td><td class="mono">{{ p.args }}</td><td>{{ p.error or '' }}</td></tr>{% endfor %}
+</table></div>
+
+<h2>7. Process Analysis</h2>
+<p>{{ d.summary.total_processes or 0 }} processes reconstructed from pslist/psscan/pstree ({{ d.summary.hidden_candidates or 0 }} hidden candidates, {{ d.summary.terminated_processes or 0 }} terminated).</p>
+<h3>Top process risk scores</h3>
+{{ charts.top_processes | safe }}
+
+<h2>8. Suspicious Processes</h2>
+{% for p in d.processes if p.risk_score >= 30 %}
+<div class="finding" style="border-left-color: {{ band_colors.get(p.risk_band, '#667085') }}">
+  <strong>{{ p.name }}</strong> PID {{ p.pid }} (PPID {{ p.ppid }}) &mdash; risk <strong>{{ p.risk_score }}</strong> ({{ p.risk_band }})
+  <div class="mono">Path: {{ p.path or 'unknown' }}</div>
+  <div class="mono">Command line: {{ p.cmdline or '-' }}</div>
+  <div>Created: {{ p.create_time or 'unknown' }} &middot; Sources: {{ p.sources | join(', ') }}{% if p.hidden %} &middot; <strong>hidden candidate</strong>{% endif %}</div>
+  <div><em>Score contributors:</em> {% for c in p.contributors %}<span class="mono">{{ '%+d' % c.points }}</span> {{ c.label }}{% if not loop.last %}; {% endif %}{% endfor %}</div>
+</div>
+{% else %}<p>No process reached the moderate risk threshold (30).</p>{% endfor %}
+
+<h3>Findings by severity</h3>
+{{ charts.severity | safe }}
+<h3>Finding categories</h3>
+{{ charts.categories | safe }}
+{% for f in d.findings %}
+<div class="finding" style="border-left-color: {{ sev_colors.get(f.severity, '#667085') }}">
+  <span class="sev" style="background: {{ sev_colors.get(f.severity, '#667085') }}">{{ f.severity }}</span>
+  <strong>[F-{{ f.id }}] {{ f.title }}</strong> <span class="muted mono">{{ f.rule_id }}</span>
+  <div>{{ f.finding }}</div>
+  <div class="muted">Process: {{ f.process_name or '-' }} (PID {{ f.pid }}) &middot; Confidence {{ f.confidence }} &middot; ATT&amp;CK: {{ f.attack | join(', ') or '-' }} &middot; Status: {{ f.status }}</div>
+  <details><summary>Evidence ({{ f.evidence | length }})</summary><ul>
+  {% for e in f.evidence %}<li>{{ e.description }}: <span class="mono">{{ e.value }}</span> <span class="muted">({{ e.source }})</span></li>{% endfor %}
+  </ul></details>
+  <div><em>Recommendation:</em> {{ f.recommendation }}</div>
+</div>
+{% endfor %}
+
+<h2>9. Memory Injection Findings</h2>
+{% if d.memory_regions %}<div class="tbl"><table><tr><th>PID</th><th>Process</th><th>Region</th><th>Protection</th><th>Tag</th><th>Private</th><th>PE header</th><th>First bytes</th></tr>
+{% for r in d.memory_regions %}<tr><td>{{ r.pid }}</td><td>{{ r.process }}</td><td class="mono">{{ r.start }}-{{ r.end }}</td><td>{{ r.protection }}</td><td>{{ r.tag }}</td><td>{{ r.private }}</td><td>{{ 'yes' if r.pe_header else 'no' }}</td><td class="mono">{{ r.first_line or '' }}</td></tr>{% endfor %}
+</table></div>
+<p class="note">Executable private memory is an indicator of injection, not definitive proof: JIT compilers and security products create similar regions.</p>
+{% else %}<p>malfind reported no regions.</p>{% endif %}
+
+<h2>10. Network Analysis</h2>
+{% if d.network %}<div class="tbl"><table><tr><th>PID</th><th>Owner</th><th>Proto</th><th>Local</th><th>Foreign</th><th>State</th><th>Created</th><th>Flag</th></tr>
+{% for c in d.network %}<tr{% if c.suspicious %} style="background:#fef3f2"{% endif %}><td>{{ c.pid }}</td><td>{{ c.owner }}</td><td>{{ c.protocol }}</td><td class="mono">{{ c.local }}</td><td class="mono">{{ c.foreign }}</td><td>{{ c.state or '' }}</td><td>{{ c.created or '' }}</td><td>{{ c.reason }}</td></tr>{% endfor %}
+</table></div>{% else %}<p>No network endpoints recovered.</p>{% endif %}
+
+<h2>11. IOC Findings</h2>
+{% if d.iocs %}<div class="tbl"><table><tr><th>Type</th><th>Value</th><th>Source</th><th>Process</th><th>Confidence</th><th>Context</th></tr>
+{% for i in d.iocs %}<tr><td>{{ i.type }}</td><td class="mono">{{ i.value }}</td><td>{{ i.source }}</td><td>{{ i.process or '-' }} ({{ i.pid }})</td><td>{{ i.confidence }}{% if i.watchlist %} &middot; watchlist{% endif %}</td><td>{{ i.context }}</td></tr>{% endfor %}
+</table></div>{% else %}<p>No IOCs extracted.</p>{% endif %}
+
+<h2>12. YARA Findings</h2>
+{% if d.yara %}<div class="tbl"><table><tr><th>Rule</th><th>PID</th><th>Process</th><th>Offset</th><th>Component</th><th>Severity</th></tr>
+{% for y in d.yara %}<tr><td>{{ y.rule }}</td><td>{{ y.pid }}</td><td>{{ y.process }}</td><td class="mono">{{ y.offset }}</td><td>{{ y.component or '' }}</td><td>{{ y.severity }}</td></tr>{% endfor %}
+</table></div><p class="note">A YARA match alone does not prove malicious activity.</p>{% else %}<p>No YARA matches (or YARA scanning not performed).</p>{% endif %}
+
+<h2>13. Risk Scoring</h2>
+{% set m = d.scoring_model or {} %}
+<p>{{ m.formula }}</p>
+<p>Bands: {% for b in m.bands or [] %}{{ b.name }} {{ b.min }}&ndash;{{ b.max }}{% if not loop.last %}, {% endif %}{% endfor %}</p>
+<p class="note">{{ m.disclaimer }}</p>
+
+<h2>14. AI Analysis</h2>
+<p>AI explanations are produced only from stored evidence (retrieval-based) and checked by a response validator. Where no LLM is configured a deterministic explanation engine is used.</p>
+{% for f in d.findings if f.explanation %}
+<div class="finding"><strong>[F-{{ f.id }}] {{ f.title }}</strong>
+<p><em>What happened?</em> {{ f.explanation.what_happened }}</p>
+<p><em>Why is it suspicious?</em> {{ f.explanation.why_suspicious }}</p>
+<p><em>Confidence:</em> {{ f.explanation.confidence.level if f.explanation.confidence is mapping else f.explanation.confidence }}</p>
+<p><em>Possible interpretation:</em> {{ f.explanation.possible_interpretation }}</p>
+<p><em>What it does NOT prove:</em> {{ f.explanation.does_not_prove }}</p>
+<p><em>Recommended next investigation:</em> {{ f.explanation.recommended_next_steps }}</p></div>
+{% else %}<p class="muted">No per-finding AI explanations were generated before this report. Open findings in the UI to generate them.</p>{% endfor %}
+
+<h2>15. Timeline</h2>
+<div class="tbl"><table><tr><th>Timestamp (UTC)</th><th>Source of time</th><th>PID</th><th>Event</th><th>Description</th><th>Severity</th></tr>
+{% for t in d.timeline %}<tr><td class="mono">{{ t.timestamp or 'unavailable' }}</td><td>{{ t.timestamp_source }}</td><td>{{ t.pid }}</td><td>{{ t.event }}</td><td>{{ t.description }}</td><td>{{ t.severity }}</td></tr>{% endfor %}
+</table></div>
+
+<h2>16. Limitations</h2>
+<ul>{% for l in d.limitations %}<li>{{ l }}</li>{% endfor %}</ul>
+
+<h2>17. Recommended Next Steps</h2>
+<ol>{% for s in d.next_steps %}<li>{{ s }}</li>{% endfor %}</ol>
+
+<h2>18. Appendix</h2>
+<h3>Chain of custody</h3>
+<div class="tbl"><table><tr><th>Timestamp (UTC)</th><th>Action</th><th>Actor</th><th>Details</th><th>SHA-256</th></tr>
+{% for c in d.custody %}<tr><td class="mono">{{ c.timestamp }}</td><td>{{ c.action }}</td><td>{{ c.actor }}</td><td>{{ c.details }}</td><td class="mono">{{ c.sha256 or '' }}</td></tr>{% endfor %}
+</table></div>
+<h3>Plugin rationale and raw output hashes</h3>
+<div class="tbl"><table><tr><th>Plugin</th><th>Why it was run</th><th>Output SHA-256</th></tr>
+{% for p in d.plugins %}<tr><td class="mono">{{ p.plugin }}</td><td>{{ p.rationale }}</td><td class="mono">{{ p.output_sha256 or '-' }}</td></tr>{% endfor %}
+</table></div>
+<p class="muted">The SHA-256 of this report file is recorded in the chain of custody when it is generated.</p>
+</main>
+</body>
+</html>

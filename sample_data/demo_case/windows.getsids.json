@@ -1,0 +1,80 @@
+[
+ {
+  "PID": 4528,
+  "Process": "svchost.exe",
+  "SID": "S-1-5-21-3623811015-3361044348-30300820-1001",
+  "Name": "jdoe"
+ },
+ {
+  "PID": 4528,
+  "Process": "svchost.exe",
+  "SID": "S-1-5-32-545",
+  "Name": "Users"
+ },
+ {
+  "PID": 4528,
+  "Process": "svchost.exe",
+  "SID": "S-1-16-8192",
+  "Name": "Medium Mandatory Level"
+ },
+ {
+  "PID": 4388,
+  "Process": "powershell.exe",
+  "SID": "S-1-5-21-3623811015-3361044348-30300820-1001",
+  "Name": "jdoe"
+ },
+ {
+  "PID": 4388,
+  "Process": "powershell.exe",
+  "SID": "S-1-5-32-545",
+  "Name": "Users"
+ },
+ {
+  "PID": 4388,
+  "Process": "powershell.exe",
+  "SID": "S-1-16-8192",
+  "Name": "Medium Mandatory Level"
+ },
+ {
+  "PID": 5120,
+  "Process": "rundll32.exe",
+  "SID": "S-1-5-21-3623811015-3361044348-30300820-1001",
+  "Name": "jdoe"
+ },
+ {
+  "PID": 5120,
+  "Process": "rundll32.exe",
+  "SID": "S-1-5-32-545",
+  "Name": "Users"
+ },
+ {
+  "PID": 5120,
+  "Process": "rundll32.exe",
+  "SID": "S-1-16-8192",
+  "Name": "Medium Mandatory Level"
+ },
+ {
+  "PID": 1868,
+  "Process": "MsMpEng.exe",
+  "SID": "S-1-5-18",
+  "Name": "Local System"
+ },
+ {
+  "PID": 3700,
+  "Process": "chrome.exe",
+  "SID": "S-1-5-21-3623811015-3361044348-30300820-1001",
+  "Name": "jdoe"
+ },
+ {
+  "PID": 3700,
+  "Process": "chrome.exe",
+  "SID": "S-1-5-32-545",
+  "Name": "Users"
+ },
+ {
+  "PID": 3700,
+  "Process": "chrome.exe",
+  "SID": "S-1-16-8192",
+  "Name": "Medium Mandatory Level"
+ }
+]

@@ -1,0 +1,1292 @@
+[
+ {
+  "PID": 352,
+  "Process": "smss.exe",
+  "Base": 140694907781120,
+  "Size": 126976,
+  "Name": "smss.exe",
+  "Path": "C:\\Windows\\System32\\smss.exe",
+  "LoadTime": "2026-03-14T08:01:01+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 352,
+  "Process": "smss.exe",
+  "Base": 140694909878272,
+  "Size": 131072,
+  "Name": "ntdll.dll",
+  "Path": "C:\\Windows\\SYSTEM32\\ntdll.dll",
+  "LoadTime": "2026-03-14T08:01:01.010000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 352,
+  "Process": "smss.exe",
+  "Base": 140694911975424,
+  "Size": 135168,
+  "Name": "KERNEL32.DLL",
+  "Path": "C:\\Windows\\System32\\KERNEL32.DLL",
+  "LoadTime": "2026-03-14T08:01:01.020000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 352,
+  "Process": "smss.exe",
+  "Base": 140694914072576,
+  "Size": 139264,
+  "Name": "KERNELBASE.dll",
+  "Path": "C:\\Windows\\System32\\KERNELBASE.dll",
+  "LoadTime": "2026-03-14T08:01:01.030000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 452,
+  "Process": "csrss.exe",
+  "Base": 140695012638720,
+  "Size": 126976,
+  "Name": "csrss.exe",
+  "Path": "C:\\Windows\\system32\\csrss.exe",
+  "LoadTime": "2026-03-14T08:01:03+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 452,
+  "Process": "csrss.exe",
+  "Base": 140695014735872,
+  "Size": 131072,
+  "Name": "ntdll.dll",
+  "Path": "C:\\Windows\\SYSTEM32\\ntdll.dll",
+  "LoadTime": "2026-03-14T08:01:03.010000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 452,
+  "Process": "csrss.exe",
+  "Base": 140695016833024,
+  "Size": 135168,
+  "Name": "KERNEL32.DLL",
+  "Path": "C:\\Windows\\System32\\KERNEL32.DLL",
+  "LoadTime": "2026-03-14T08:01:03.020000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 452,
+  "Process": "csrss.exe",
+  "Base": 140695018930176,
+  "Size": 139264,
+  "Name": "KERNELBASE.dll",
+  "Path": "C:\\Windows\\System32\\KERNELBASE.dll",
+  "LoadTime": "2026-03-14T08:01:03.030000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 528,
+  "Process": "wininit.exe",
+  "Base": 140695092330496,
+  "Size": 126976,
+  "Name": "wininit.exe",
+  "Path": "C:\\Windows\\system32\\wininit.exe",
+  "LoadTime": "2026-03-14T08:01:03+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 528,
+  "Process": "wininit.exe",
+  "Base": 140695094427648,
+  "Size": 131072,
+  "Name": "ntdll.dll",
+  "Path": "C:\\Windows\\SYSTEM32\\ntdll.dll",
+  "LoadTime": "2026-03-14T08:01:03.010000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 528,
+  "Process": "wininit.exe",
+  "Base": 140695096524800,
+  "Size": 135168,
+  "Name": "KERNEL32.DLL",
+  "Path": "C:\\Windows\\System32\\KERNEL32.DLL",
+  "LoadTime": "2026-03-14T08:01:03.020000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 528,
+  "Process": "wininit.exe",
+  "Base": 140695098621952,
+  "Size": 139264,
+  "Name": "KERNELBASE.dll",
+  "Path": "C:\\Windows\\System32\\KERNELBASE.dll",
+  "LoadTime": "2026-03-14T08:01:03.030000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 540,
+  "Process": "csrss.exe",
+  "Base": 140695104913408,
+  "Size": 126976,
+  "Name": "csrss.exe",
+  "Path": "C:\\Windows\\system32\\csrss.exe",
+  "LoadTime": "2026-03-14T08:01:03+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 540,
+  "Process": "csrss.exe",
+  "Base": 140695107010560,
+  "Size": 131072,
+  "Name": "ntdll.dll",
+  "Path": "C:\\Windows\\SYSTEM32\\ntdll.dll",
+  "LoadTime": "2026-03-14T08:01:03.010000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 540,
+  "Process": "csrss.exe",
+  "Base": 140695109107712,
+  "Size": 135168,
+  "Name": "KERNEL32.DLL",
+  "Path": "C:\\Windows\\System32\\KERNEL32.DLL",
+  "LoadTime": "2026-03-14T08:01:03.020000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 540,
+  "Process": "csrss.exe",
+  "Base": 140695111204864,
+  "Size": 139264,
+  "Name": "KERNELBASE.dll",
+  "Path": "C:\\Windows\\System32\\KERNELBASE.dll",
+  "LoadTime": "2026-03-14T08:01:03.030000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 604,
+  "Process": "winlogon.exe",
+  "Base": 140695172022272,
+  "Size": 126976,
+  "Name": "winlogon.exe",
+  "Path": "C:\\Windows\\system32\\winlogon.exe",
+  "LoadTime": "2026-03-14T08:01:03+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 604,
+  "Process": "winlogon.exe",
+  "Base": 140695174119424,
+  "Size": 131072,
+  "Name": "ntdll.dll",
+  "Path": "C:\\Windows\\SYSTEM32\\ntdll.dll",
+  "LoadTime": "2026-03-14T08:01:03.010000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 604,
+  "Process": "winlogon.exe",
+  "Base": 140695176216576,
+  "Size": 135168,
+  "Name": "KERNEL32.DLL",
+  "Path": "C:\\Windows\\System32\\KERNEL32.DLL",
+  "LoadTime": "2026-03-14T08:01:03.020000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 604,
+  "Process": "winlogon.exe",
+  "Base": 140695178313728,
+  "Size": 139264,
+  "Name": "KERNELBASE.dll",
+  "Path": "C:\\Windows\\System32\\KERNELBASE.dll",
+  "LoadTime": "2026-03-14T08:01:03.030000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 640,
+  "Process": "services.exe",
+  "Base": 140695209771008,
+  "Size": 126976,
+  "Name": "services.exe",
+  "Path": "C:\\Windows\\system32\\services.exe",
+  "LoadTime": "2026-03-14T08:01:04+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 640,
+  "Process": "services.exe",
+  "Base": 140695211868160,
+  "Size": 131072,
+  "Name": "ntdll.dll",
+  "Path": "C:\\Windows\\SYSTEM32\\ntdll.dll",
+  "LoadTime": "2026-03-14T08:01:04.010000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 640,
+  "Process": "services.exe",
+  "Base": 140695213965312,
+  "Size": 135168,
+  "Name": "KERNEL32.DLL",
+  "Path": "C:\\Windows\\System32\\KERNEL32.DLL",
+  "LoadTime": "2026-03-14T08:01:04.020000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 640,
+  "Process": "services.exe",
+  "Base": 140695216062464,
+  "Size": 139264,
+  "Name": "KERNELBASE.dll",
+  "Path": "C:\\Windows\\System32\\KERNELBASE.dll",
+  "LoadTime": "2026-03-14T08:01:04.030000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 660,
+  "Process": "lsass.exe",
+  "Base": 140695230742528,
+  "Size": 126976,
+  "Name": "lsass.exe",
+  "Path": "C:\\Windows\\system32\\lsass.exe",
+  "LoadTime": "2026-03-14T08:01:04+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 660,
+  "Process": "lsass.exe",
+  "Base": 140695232839680,
+  "Size": 131072,
+  "Name": "ntdll.dll",
+  "Path": "C:\\Windows\\SYSTEM32\\ntdll.dll",
+  "LoadTime": "2026-03-14T08:01:04.010000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 660,
+  "Process": "lsass.exe",
+  "Base": 140695234936832,
+  "Size": 135168,
+  "Name": "KERNEL32.DLL",
+  "Path": "C:\\Windows\\System32\\KERNEL32.DLL",
+  "LoadTime": "2026-03-14T08:01:04.020000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 660,
+  "Process": "lsass.exe",
+  "Base": 140695237033984,
+  "Size": 139264,
+  "Name": "KERNELBASE.dll",
+  "Path": "C:\\Windows\\System32\\KERNELBASE.dll",
+  "LoadTime": "2026-03-14T08:01:04.030000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 780,
+  "Process": "svchost.exe",
+  "Base": 140695356571648,
+  "Size": 126976,
+  "Name": "svchost.exe",
+  "Path": "C:\\Windows\\system32\\svchost.exe",
+  "LoadTime": "2026-03-14T08:01:05+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 780,
+  "Process": "svchost.exe",
+  "Base": 140695358668800,
+  "Size": 131072,
+  "Name": "ntdll.dll",
+  "Path": "C:\\Windows\\SYSTEM32\\ntdll.dll",
+  "LoadTime": "2026-03-14T08:01:05.010000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 780,
+  "Process": "svchost.exe",
+  "Base": 140695360765952,
+  "Size": 135168,
+  "Name": "KERNEL32.DLL",
+  "Path": "C:\\Windows\\System32\\KERNEL32.DLL",
+  "LoadTime": "2026-03-14T08:01:05.020000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 780,
+  "Process": "svchost.exe",
+  "Base": 140695362863104,
+  "Size": 139264,
+  "Name": "KERNELBASE.dll",
+  "Path": "C:\\Windows\\System32\\KERNELBASE.dll",
+  "LoadTime": "2026-03-14T08:01:05.030000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 832,
+  "Process": "fontdrvhost.ex",
+  "Base": 140695411097600,
+  "Size": 126976,
+  "Name": "fontdrvhost.exe",
+  "Path": "C:\\Windows\\system32\\fontdrvhost.exe",
+  "LoadTime": "2026-03-14T08:01:05+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 832,
+  "Process": "fontdrvhost.ex",
+  "Base": 140695413194752,
+  "Size": 131072,
+  "Name": "ntdll.dll",
+  "Path": "C:\\Windows\\SYSTEM32\\ntdll.dll",
+  "LoadTime": "2026-03-14T08:01:05.010000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 832,
+  "Process": "fontdrvhost.ex",
+  "Base": 140695415291904,
+  "Size": 135168,
+  "Name": "KERNEL32.DLL",
+  "Path": "C:\\Windows\\System32\\KERNEL32.DLL",
+  "LoadTime": "2026-03-14T08:01:05.020000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 832,
+  "Process": "fontdrvhost.ex",
+  "Base": 140695417389056,
+  "Size": 139264,
+  "Name": "KERNELBASE.dll",
+  "Path": "C:\\Windows\\System32\\KERNELBASE.dll",
+  "LoadTime": "2026-03-14T08:01:05.030000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 848,
+  "Process": "svchost.exe",
+  "Base": 140695427874816,
+  "Size": 126976,
+  "Name": "svchost.exe",
+  "Path": "C:\\Windows\\system32\\svchost.exe",
+  "LoadTime": "2026-03-14T08:01:05+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 848,
+  "Process": "svchost.exe",
+  "Base": 140695429971968,
+  "Size": 131072,
+  "Name": "ntdll.dll",
+  "Path": "C:\\Windows\\SYSTEM32\\ntdll.dll",
+  "LoadTime": "2026-03-14T08:01:05.010000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 848,
+  "Process": "svchost.exe",
+  "Base": 140695432069120,
+  "Size": 135168,
+  "Name": "KERNEL32.DLL",
+  "Path": "C:\\Windows\\System32\\KERNEL32.DLL",
+  "LoadTime": "2026-03-14T08:01:05.020000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 848,
+  "Process": "svchost.exe",
+  "Base": 140695434166272,
+  "Size": 139264,
+  "Name": "KERNELBASE.dll",
+  "Path": "C:\\Windows\\System32\\KERNELBASE.dll",
+  "LoadTime": "2026-03-14T08:01:05.030000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 920,
+  "Process": "dwm.exe",
+  "Base": 140695503372288,
+  "Size": 126976,
+  "Name": "dwm.exe",
+  "Path": "C:\\Windows\\system32\\dwm.exe",
+  "LoadTime": "2026-03-14T08:01:06+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 920,
+  "Process": "dwm.exe",
+  "Base": 140695505469440,
+  "Size": 131072,
+  "Name": "ntdll.dll",
+  "Path": "C:\\Windows\\SYSTEM32\\ntdll.dll",
+  "LoadTime": "2026-03-14T08:01:06.010000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 920,
+  "Process": "dwm.exe",
+  "Base": 140695507566592,
+  "Size": 135168,
+  "Name": "KERNEL32.DLL",
+  "Path": "C:\\Windows\\System32\\KERNEL32.DLL",
+  "LoadTime": "2026-03-14T08:01:06.020000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 920,
+  "Process": "dwm.exe",
+  "Base": 140695509663744,
+  "Size": 139264,
+  "Name": "KERNELBASE.dll",
+  "Path": "C:\\Windows\\System32\\KERNELBASE.dll",
+  "LoadTime": "2026-03-14T08:01:06.030000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 1012,
+  "Process": "svchost.exe",
+  "Base": 140695599841280,
+  "Size": 126976,
+  "Name": "svchost.exe",
+  "Path": "C:\\Windows\\system32\\svchost.exe",
+  "LoadTime": "2026-03-14T08:01:06+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 1012,
+  "Process": "svchost.exe",
+  "Base": 140695601938432,
+  "Size": 131072,
+  "Name": "ntdll.dll",
+  "Path": "C:\\Windows\\SYSTEM32\\ntdll.dll",
+  "LoadTime": "2026-03-14T08:01:06.010000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 1012,
+  "Process": "svchost.exe",
+  "Base": 140695604035584,
+  "Size": 135168,
+  "Name": "KERNEL32.DLL",
+  "Path": "C:\\Windows\\System32\\KERNEL32.DLL",
+  "LoadTime": "2026-03-14T08:01:06.020000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 1012,
+  "Process": "svchost.exe",
+  "Base": 140695606132736,
+  "Size": 139264,
+  "Name": "KERNELBASE.dll",
+  "Path": "C:\\Windows\\System32\\KERNELBASE.dll",
+  "LoadTime": "2026-03-14T08:01:06.030000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 1104,
+  "Process": "svchost.exe",
+  "Base": 140695696310272,
+  "Size": 126976,
+  "Name": "svchost.exe",
+  "Path": "C:\\Windows\\system32\\svchost.exe",
+  "LoadTime": "2026-03-14T08:01:07+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 1104,
+  "Process": "svchost.exe",
+  "Base": 140695698407424,
+  "Size": 131072,
+  "Name": "ntdll.dll",
+  "Path": "C:\\Windows\\SYSTEM32\\ntdll.dll",
+  "LoadTime": "2026-03-14T08:01:07.010000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 1104,
+  "Process": "svchost.exe",
+  "Base": 140695700504576,
+  "Size": 135168,
+  "Name": "KERNEL32.DLL",
+  "Path": "C:\\Windows\\System32\\KERNEL32.DLL",
+  "LoadTime": "2026-03-14T08:01:07.020000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 1104,
+  "Process": "svchost.exe",
+  "Base": 140695702601728,
+  "Size": 139264,
+  "Name": "KERNELBASE.dll",
+  "Path": "C:\\Windows\\System32\\KERNELBASE.dll",
+  "LoadTime": "2026-03-14T08:01:07.030000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 1340,
+  "Process": "spoolsv.exe",
+  "Base": 140695943774208,
+  "Size": 126976,
+  "Name": "spoolsv.exe",
+  "Path": "C:\\Windows\\System32\\spoolsv.exe",
+  "LoadTime": "2026-03-14T08:01:09+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 1340,
+  "Process": "spoolsv.exe",
+  "Base": 140695945871360,
+  "Size": 131072,
+  "Name": "ntdll.dll",
+  "Path": "C:\\Windows\\SYSTEM32\\ntdll.dll",
+  "LoadTime": "2026-03-14T08:01:09.010000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 1340,
+  "Process": "spoolsv.exe",
+  "Base": 140695947968512,
+  "Size": 135168,
+  "Name": "KERNEL32.DLL",
+  "Path": "C:\\Windows\\System32\\KERNEL32.DLL",
+  "LoadTime": "2026-03-14T08:01:09.020000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 1340,
+  "Process": "spoolsv.exe",
+  "Base": 140695950065664,
+  "Size": 139264,
+  "Name": "KERNELBASE.dll",
+  "Path": "C:\\Windows\\System32\\KERNELBASE.dll",
+  "LoadTime": "2026-03-14T08:01:09.030000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 1520,
+  "Process": "svchost.exe",
+  "Base": 140696132517888,
+  "Size": 126976,
+  "Name": "svchost.exe",
+  "Path": "C:\\Windows\\system32\\svchost.exe",
+  "LoadTime": "2026-03-14T08:01:09+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 1520,
+  "Process": "svchost.exe",
+  "Base": 140696134615040,
+  "Size": 131072,
+  "Name": "ntdll.dll",
+  "Path": "C:\\Windows\\SYSTEM32\\ntdll.dll",
+  "LoadTime": "2026-03-14T08:01:09.010000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 1520,
+  "Process": "svchost.exe",
+  "Base": 140696136712192,
+  "Size": 135168,
+  "Name": "KERNEL32.DLL",
+  "Path": "C:\\Windows\\System32\\KERNEL32.DLL",
+  "LoadTime": "2026-03-14T08:01:09.020000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 1520,
+  "Process": "svchost.exe",
+  "Base": 140696138809344,
+  "Size": 139264,
+  "Name": "KERNELBASE.dll",
+  "Path": "C:\\Windows\\System32\\KERNELBASE.dll",
+  "LoadTime": "2026-03-14T08:01:09.030000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 1868,
+  "Process": "MsMpEng.exe",
+  "Base": 140696497422336,
+  "Size": 126976,
+  "Name": "MsMpEng.exe",
+  "Path": "C:\\ProgramData\\Microsoft\\Windows Defender\\Platform\\4.18.24090.11-0\\MsMpEng.exe",
+  "LoadTime": "2026-03-14T08:01:12+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 1868,
+  "Process": "MsMpEng.exe",
+  "Base": 140696499519488,
+  "Size": 131072,
+  "Name": "ntdll.dll",
+  "Path": "C:\\Windows\\SYSTEM32\\ntdll.dll",
+  "LoadTime": "2026-03-14T08:01:12.010000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 1868,
+  "Process": "MsMpEng.exe",
+  "Base": 140696501616640,
+  "Size": 135168,
+  "Name": "KERNEL32.DLL",
+  "Path": "C:\\Windows\\System32\\KERNEL32.DLL",
+  "LoadTime": "2026-03-14T08:01:12.020000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 1868,
+  "Process": "MsMpEng.exe",
+  "Base": 140696503713792,
+  "Size": 139264,
+  "Name": "KERNELBASE.dll",
+  "Path": "C:\\Windows\\System32\\KERNELBASE.dll",
+  "LoadTime": "2026-03-14T08:01:12.030000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 2290,
+  "Process": "SearchIndexer.",
+  "Base": 140696939921408,
+  "Size": 126976,
+  "Name": "SearchIndexer.exe",
+  "Path": "C:\\Windows\\system32\\SearchIndexer.exe",
+  "LoadTime": "2026-03-14T08:01:40+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 2290,
+  "Process": "SearchIndexer.",
+  "Base": 140696942018560,
+  "Size": 131072,
+  "Name": "ntdll.dll",
+  "Path": "C:\\Windows\\SYSTEM32\\ntdll.dll",
+  "LoadTime": "2026-03-14T08:01:40.010000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 2290,
+  "Process": "SearchIndexer.",
+  "Base": 140696944115712,
+  "Size": 135168,
+  "Name": "KERNEL32.DLL",
+  "Path": "C:\\Windows\\System32\\KERNEL32.DLL",
+  "LoadTime": "2026-03-14T08:01:40.020000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 2290,
+  "Process": "SearchIndexer.",
+  "Base": 140696946212864,
+  "Size": 139264,
+  "Name": "KERNELBASE.dll",
+  "Path": "C:\\Windows\\System32\\KERNELBASE.dll",
+  "LoadTime": "2026-03-14T08:01:40.030000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 3120,
+  "Process": "explorer.exe",
+  "Base": 140697810239488,
+  "Size": 126976,
+  "Name": "explorer.exe",
+  "Path": "C:\\Windows\\explorer.exe",
+  "LoadTime": "2026-03-14T08:02:05+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 3120,
+  "Process": "explorer.exe",
+  "Base": 140697812336640,
+  "Size": 131072,
+  "Name": "ntdll.dll",
+  "Path": "C:\\Windows\\SYSTEM32\\ntdll.dll",
+  "LoadTime": "2026-03-14T08:02:05.010000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 3120,
+  "Process": "explorer.exe",
+  "Base": 140697814433792,
+  "Size": 135168,
+  "Name": "KERNEL32.DLL",
+  "Path": "C:\\Windows\\System32\\KERNEL32.DLL",
+  "LoadTime": "2026-03-14T08:02:05.020000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 3120,
+  "Process": "explorer.exe",
+  "Base": 140697816530944,
+  "Size": 139264,
+  "Name": "KERNELBASE.dll",
+  "Path": "C:\\Windows\\System32\\KERNELBASE.dll",
+  "LoadTime": "2026-03-14T08:02:05.030000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 3388,
+  "Process": "taskhostw.exe",
+  "Base": 140698091257856,
+  "Size": 126976,
+  "Name": "taskhostw.exe",
+  "Path": "C:\\Windows\\system32\\taskhostw.exe",
+  "LoadTime": "2026-03-14T08:02:06+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 3388,
+  "Process": "taskhostw.exe",
+  "Base": 140698093355008,
+  "Size": 131072,
+  "Name": "ntdll.dll",
+  "Path": "C:\\Windows\\SYSTEM32\\ntdll.dll",
+  "LoadTime": "2026-03-14T08:02:06.010000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 3388,
+  "Process": "taskhostw.exe",
+  "Base": 140698095452160,
+  "Size": 135168,
+  "Name": "KERNEL32.DLL",
+  "Path": "C:\\Windows\\System32\\KERNEL32.DLL",
+  "LoadTime": "2026-03-14T08:02:06.020000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 3388,
+  "Process": "taskhostw.exe",
+  "Base": 140698097549312,
+  "Size": 139264,
+  "Name": "KERNELBASE.dll",
+  "Path": "C:\\Windows\\System32\\KERNELBASE.dll",
+  "LoadTime": "2026-03-14T08:02:06.030000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 3410,
+  "Process": "sihost.exe",
+  "Base": 140698114326528,
+  "Size": 126976,
+  "Name": "sihost.exe",
+  "Path": "C:\\Windows\\system32\\sihost.exe",
+  "LoadTime": "2026-03-14T08:02:06+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 3410,
+  "Process": "sihost.exe",
+  "Base": 140698116423680,
+  "Size": 131072,
+  "Name": "ntdll.dll",
+  "Path": "C:\\Windows\\SYSTEM32\\ntdll.dll",
+  "LoadTime": "2026-03-14T08:02:06.010000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 3410,
+  "Process": "sihost.exe",
+  "Base": 140698118520832,
+  "Size": 135168,
+  "Name": "KERNEL32.DLL",
+  "Path": "C:\\Windows\\System32\\KERNEL32.DLL",
+  "LoadTime": "2026-03-14T08:02:06.020000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 3410,
+  "Process": "sihost.exe",
+  "Base": 140698120617984,
+  "Size": 139264,
+  "Name": "KERNELBASE.dll",
+  "Path": "C:\\Windows\\System32\\KERNELBASE.dll",
+  "LoadTime": "2026-03-14T08:02:06.030000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 3570,
+  "Process": "RuntimeBroker.",
+  "Base": 140698282098688,
+  "Size": 126976,
+  "Name": "RuntimeBroker.exe",
+  "Path": "C:\\Windows\\System32\\RuntimeBroker.exe",
+  "LoadTime": "2026-03-14T08:02:10+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 3570,
+  "Process": "RuntimeBroker.",
+  "Base": 140698284195840,
+  "Size": 131072,
+  "Name": "ntdll.dll",
+  "Path": "C:\\Windows\\SYSTEM32\\ntdll.dll",
+  "LoadTime": "2026-03-14T08:02:10.010000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 3570,
+  "Process": "RuntimeBroker.",
+  "Base": 140698286292992,
+  "Size": 135168,
+  "Name": "KERNEL32.DLL",
+  "Path": "C:\\Windows\\System32\\KERNEL32.DLL",
+  "LoadTime": "2026-03-14T08:02:10.020000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 3570,
+  "Process": "RuntimeBroker.",
+  "Base": 140698288390144,
+  "Size": 139264,
+  "Name": "KERNELBASE.dll",
+  "Path": "C:\\Windows\\System32\\KERNELBASE.dll",
+  "LoadTime": "2026-03-14T08:02:10.030000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 3672,
+  "Process": "chrome.exe",
+  "Base": 140698389053440,
+  "Size": 126976,
+  "Name": "chrome.exe",
+  "Path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+  "LoadTime": "2026-03-14T08:16:00+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 3672,
+  "Process": "chrome.exe",
+  "Base": 140698391150592,
+  "Size": 131072,
+  "Name": "ntdll.dll",
+  "Path": "C:\\Windows\\SYSTEM32\\ntdll.dll",
+  "LoadTime": "2026-03-14T08:16:00.010000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 3672,
+  "Process": "chrome.exe",
+  "Base": 140698393247744,
+  "Size": 135168,
+  "Name": "KERNEL32.DLL",
+  "Path": "C:\\Windows\\System32\\KERNEL32.DLL",
+  "LoadTime": "2026-03-14T08:16:00.020000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 3672,
+  "Process": "chrome.exe",
+  "Base": 140698395344896,
+  "Size": 139264,
+  "Name": "KERNELBASE.dll",
+  "Path": "C:\\Windows\\System32\\KERNELBASE.dll",
+  "LoadTime": "2026-03-14T08:16:00.030000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 3700,
+  "Process": "chrome.exe",
+  "Base": 140698418413568,
+  "Size": 126976,
+  "Name": "chrome.exe",
+  "Path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+  "LoadTime": "2026-03-14T08:16:02+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 3700,
+  "Process": "chrome.exe",
+  "Base": 140698420510720,
+  "Size": 131072,
+  "Name": "ntdll.dll",
+  "Path": "C:\\Windows\\SYSTEM32\\ntdll.dll",
+  "LoadTime": "2026-03-14T08:16:02.010000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 3700,
+  "Process": "chrome.exe",
+  "Base": 140698422607872,
+  "Size": 135168,
+  "Name": "KERNEL32.DLL",
+  "Path": "C:\\Windows\\System32\\KERNEL32.DLL",
+  "LoadTime": "2026-03-14T08:16:02.020000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 3700,
+  "Process": "chrome.exe",
+  "Base": 140698424705024,
+  "Size": 139264,
+  "Name": "KERNELBASE.dll",
+  "Path": "C:\\Windows\\System32\\KERNELBASE.dll",
+  "LoadTime": "2026-03-14T08:16:02.030000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 3901,
+  "Process": "OneDrive.exe",
+  "Base": 140698629177344,
+  "Size": 126976,
+  "Name": "OneDrive.exe",
+  "Path": "C:\\Users\\jdoe\\AppData\\Local\\Microsoft\\OneDrive\\OneDrive.exe",
+  "LoadTime": "2026-03-14T08:02:15+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 3901,
+  "Process": "OneDrive.exe",
+  "Base": 140698631274496,
+  "Size": 131072,
+  "Name": "ntdll.dll",
+  "Path": "C:\\Windows\\SYSTEM32\\ntdll.dll",
+  "LoadTime": "2026-03-14T08:02:15.010000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 3901,
+  "Process": "OneDrive.exe",
+  "Base": 140698633371648,
+  "Size": 135168,
+  "Name": "KERNEL32.DLL",
+  "Path": "C:\\Windows\\System32\\KERNEL32.DLL",
+  "LoadTime": "2026-03-14T08:02:15.020000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 3901,
+  "Process": "OneDrive.exe",
+  "Base": 140698635468800,
+  "Size": 139264,
+  "Name": "KERNELBASE.dll",
+  "Path": "C:\\Windows\\System32\\KERNELBASE.dll",
+  "LoadTime": "2026-03-14T08:02:15.030000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 3901,
+  "Process": "OneDrive.exe",
+  "Base": 140698637565952,
+  "Size": 143360,
+  "Name": "FileSyncClient.dll",
+  "Path": "C:\\Users\\jdoe\\AppData\\Local\\Microsoft\\OneDrive\\24.201.1006.0005\\FileSyncClient.dll",
+  "LoadTime": "2026-03-14T08:02:15.040000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 5236,
+  "Process": "notepad.exe",
+  "Base": 140700029026304,
+  "Size": 126976,
+  "Name": "notepad.exe",
+  "Path": "C:\\Windows\\system32\\notepad.exe",
+  "LoadTime": "2026-03-14T09:14:20+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 5236,
+  "Process": "notepad.exe",
+  "Base": 140700031123456,
+  "Size": 131072,
+  "Name": "ntdll.dll",
+  "Path": "C:\\Windows\\SYSTEM32\\ntdll.dll",
+  "LoadTime": "2026-03-14T09:14:20.010000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 5236,
+  "Process": "notepad.exe",
+  "Base": 140700033220608,
+  "Size": 135168,
+  "Name": "KERNEL32.DLL",
+  "Path": "C:\\Windows\\System32\\KERNEL32.DLL",
+  "LoadTime": "2026-03-14T09:14:20.020000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 5236,
+  "Process": "notepad.exe",
+  "Base": 140700035317760,
+  "Size": 139264,
+  "Name": "KERNELBASE.dll",
+  "Path": "C:\\Windows\\System32\\KERNELBASE.dll",
+  "LoadTime": "2026-03-14T09:14:20.030000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 4012,
+  "Process": "WINWORD.EXE",
+  "Base": 140698745569280,
+  "Size": 126976,
+  "Name": "WINWORD.EXE",
+  "Path": "C:\\Program Files\\Microsoft Office\\root\\Office16\\WINWORD.EXE",
+  "LoadTime": "2026-03-14T10:31:15+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 4012,
+  "Process": "WINWORD.EXE",
+  "Base": 140698747666432,
+  "Size": 131072,
+  "Name": "ntdll.dll",
+  "Path": "C:\\Windows\\SYSTEM32\\ntdll.dll",
+  "LoadTime": "2026-03-14T10:31:15.010000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 4012,
+  "Process": "WINWORD.EXE",
+  "Base": 140698749763584,
+  "Size": 135168,
+  "Name": "KERNEL32.DLL",
+  "Path": "C:\\Windows\\System32\\KERNEL32.DLL",
+  "LoadTime": "2026-03-14T10:31:15.020000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 4012,
+  "Process": "WINWORD.EXE",
+  "Base": 140698751860736,
+  "Size": 139264,
+  "Name": "KERNELBASE.dll",
+  "Path": "C:\\Windows\\System32\\KERNELBASE.dll",
+  "LoadTime": "2026-03-14T10:31:15.030000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 4012,
+  "Process": "WINWORD.EXE",
+  "Base": 140698753957888,
+  "Size": 143360,
+  "Name": "VBE7.DLL",
+  "Path": "C:\\Program Files\\Microsoft Office\\root\\vfs\\ProgramFilesCommonX64\\Microsoft Shared\\VBA\\VBA7.1\\VBE7.DLL",
+  "LoadTime": "2026-03-14T10:31:15.040000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 4388,
+  "Process": "powershell.exe",
+  "Base": 140699139833856,
+  "Size": 126976,
+  "Name": "powershell.exe",
+  "Path": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+  "LoadTime": "2026-03-14T10:31:42+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 4388,
+  "Process": "powershell.exe",
+  "Base": 140699141931008,
+  "Size": 131072,
+  "Name": "ntdll.dll",
+  "Path": "C:\\Windows\\SYSTEM32\\ntdll.dll",
+  "LoadTime": "2026-03-14T10:31:42.010000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 4388,
+  "Process": "powershell.exe",
+  "Base": 140699144028160,
+  "Size": 135168,
+  "Name": "KERNEL32.DLL",
+  "Path": "C:\\Windows\\System32\\KERNEL32.DLL",
+  "LoadTime": "2026-03-14T10:31:42.020000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 4388,
+  "Process": "powershell.exe",
+  "Base": 140699146125312,
+  "Size": 139264,
+  "Name": "KERNELBASE.dll",
+  "Path": "C:\\Windows\\System32\\KERNELBASE.dll",
+  "LoadTime": "2026-03-14T10:31:42.030000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 4388,
+  "Process": "powershell.exe",
+  "Base": 140699148222464,
+  "Size": 143360,
+  "Name": "System.Management.Automation.ni.dll",
+  "Path": "C:\\Windows\\assembly\\NativeImages_v4.0.30319_64\\System.Manaa57fc8cc#\\System.Management.Automation.ni.dll",
+  "LoadTime": "2026-03-14T10:31:42.040000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 4388,
+  "Process": "powershell.exe",
+  "Base": 140699150319616,
+  "Size": 147456,
+  "Name": "amsi.dll",
+  "Path": "C:\\Windows\\SYSTEM32\\amsi.dll",
+  "LoadTime": "2026-03-14T10:31:42.050000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 5400,
+  "Process": "conhost.exe",
+  "Base": 140700200992768,
+  "Size": 126976,
+  "Name": "conhost.exe",
+  "Path": "C:\\Windows\\system32\\conhost.exe",
+  "LoadTime": "2026-03-14T10:31:42+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 5400,
+  "Process": "conhost.exe",
+  "Base": 140700203089920,
+  "Size": 131072,
+  "Name": "ntdll.dll",
+  "Path": "C:\\Windows\\SYSTEM32\\ntdll.dll",
+  "LoadTime": "2026-03-14T10:31:42.010000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 5400,
+  "Process": "conhost.exe",
+  "Base": 140700205187072,
+  "Size": 135168,
+  "Name": "KERNEL32.DLL",
+  "Path": "C:\\Windows\\System32\\KERNEL32.DLL",
+  "LoadTime": "2026-03-14T10:31:42.020000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 5400,
+  "Process": "conhost.exe",
+  "Base": 140700207284224,
+  "Size": 139264,
+  "Name": "KERNELBASE.dll",
+  "Path": "C:\\Windows\\System32\\KERNELBASE.dll",
+  "LoadTime": "2026-03-14T10:31:42.030000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 4528,
+  "Process": "svchost.exe",
+  "Base": 140699286634496,
+  "Size": 126976,
+  "Name": "svchost.exe",
+  "Path": "C:\\Users\\Public\\svchost.exe",
+  "LoadTime": "2026-03-14T10:32:05+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 4528,
+  "Process": "svchost.exe",
+  "Base": 140699288731648,
+  "Size": 131072,
+  "Name": "ntdll.dll",
+  "Path": "C:\\Windows\\SYSTEM32\\ntdll.dll",
+  "LoadTime": "2026-03-14T10:32:05.010000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 4528,
+  "Process": "svchost.exe",
+  "Base": 140699290828800,
+  "Size": 135168,
+  "Name": "KERNEL32.DLL",
+  "Path": "C:\\Windows\\System32\\KERNEL32.DLL",
+  "LoadTime": "2026-03-14T10:32:05.020000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 4528,
+  "Process": "svchost.exe",
+  "Base": 140699292925952,
+  "Size": 139264,
+  "Name": "KERNELBASE.dll",
+  "Path": "C:\\Windows\\System32\\KERNELBASE.dll",
+  "LoadTime": "2026-03-14T10:32:05.030000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 4528,
+  "Process": "svchost.exe",
+  "Base": 140699295023104,
+  "Size": 143360,
+  "Name": "WS2_32.dll",
+  "Path": "C:\\Windows\\System32\\WS2_32.dll",
+  "LoadTime": "2026-03-14T10:32:05.040000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 4528,
+  "Process": "svchost.exe",
+  "Base": 140699297120256,
+  "Size": 147456,
+  "Name": "WININET.dll",
+  "Path": "C:\\Windows\\System32\\WININET.dll",
+  "LoadTime": "2026-03-14T10:32:05.050000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 4528,
+  "Process": "svchost.exe",
+  "Base": 140699299217408,
+  "Size": 151552,
+  "Name": "msupd.dll",
+  "Path": "C:\\Users\\jdoe\\AppData\\Local\\Temp\\msupd.dll",
+  "LoadTime": "2026-03-14T10:32:09.060000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 5120,
+  "Process": "rundll32.exe",
+  "Base": 140699907391488,
+  "Size": 126976,
+  "Name": "rundll32.exe",
+  "Path": "C:\\Windows\\system32\\rundll32.exe",
+  "LoadTime": "2026-03-14T10:33:40+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 5120,
+  "Process": "rundll32.exe",
+  "Base": 140699909488640,
+  "Size": 131072,
+  "Name": "ntdll.dll",
+  "Path": "C:\\Windows\\SYSTEM32\\ntdll.dll",
+  "LoadTime": "2026-03-14T10:33:40.010000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 5120,
+  "Process": "rundll32.exe",
+  "Base": 140699911585792,
+  "Size": 135168,
+  "Name": "KERNEL32.DLL",
+  "Path": "C:\\Windows\\System32\\KERNEL32.DLL",
+  "LoadTime": "2026-03-14T10:33:40.020000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 5120,
+  "Process": "rundll32.exe",
+  "Base": 140699913682944,
+  "Size": 139264,
+  "Name": "KERNELBASE.dll",
+  "Path": "C:\\Windows\\System32\\KERNELBASE.dll",
+  "LoadTime": "2026-03-14T10:33:40.030000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 5120,
+  "Process": "rundll32.exe",
+  "Base": 140699915780096,
+  "Size": 143360,
+  "Name": "msupd.dll",
+  "Path": "C:\\Users\\jdoe\\AppData\\Local\\Temp\\msupd.dll",
+  "LoadTime": "2026-03-14T10:33:40.040000+00:00",
+  "File output": "Disabled"
+ },
+ {
+  "PID": 5120,
+  "Process": "rundll32.exe",
+  "Base": 140699917877248,
+  "Size": 147456,
+  "Name": "WS2_32.dll",
+  "Path": "C:\\Windows\\System32\\WS2_32.dll",
+  "LoadTime": "2026-03-14T10:33:40.050000+00:00",
+  "File output": "Disabled"
+ }
+]

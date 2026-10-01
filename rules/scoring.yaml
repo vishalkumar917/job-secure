@@ -1,0 +1,32 @@
+# Explainable process risk-scoring model (project analytical model - NOT a malware verdict).
+#
+#   contribution(finding) = round(points(finding) * (0.5 + 0.5 * confidence(finding)))
+#   category_score(c)     = min(cap(c), sum of contributions in category c)
+#   corroboration_bonus   = bonus if findings span >= min_categories distinct categories
+#   process_score         = min(100, sum(category_score) + corroboration_bonus)
+#
+# Caps stop one noisy category (e.g. many RWX regions) from dominating; the
+# corroboration bonus rewards independent lines of evidence agreeing.
+
+category_caps:
+  process_integrity: 25   # hiding, duplicates of singleton system processes
+  parent_child: 20
+  path: 25
+  masquerading: 25
+  memory: 35              # malfind / VAD injection indicators
+  modules: 20
+  network: 20
+  commandline: 25
+  privileges: 15          # SeDebugPrivilege, lsass handles
+  yara: 25
+  ioc: 25
+
+corroboration:
+  min_categories: 3
+  bonus: 10
+
+bands:
+  - {name: low, min: 0, max: 29}
+  - {name: moderate, min: 30, max: 59}
+  - {name: high, min: 60, max: 79}
+  - {name: critical, min: 80, max: 100}

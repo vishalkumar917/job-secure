@@ -1,0 +1,15 @@
+# Local threat-intelligence watchlist.
+#
+# Add indicators from your organisation's threat-intel feeds or case notes.
+# A match raises RULE_IOC_WATCHLIST_MATCH. The entries below use RFC 5737
+# documentation addresses and RFC 2606 reserved domains and exist ONLY to
+# exercise the demo dataset - they are not real threat intelligence.
+
+ipv4:
+  - value: 203.0.113.45
+    label: "DEMO watchlist entry (RFC 5737 documentation address)"
+domains:
+  - value: update-check.example
+    label: "DEMO watchlist entry (RFC 2606 reserved domain)"
+sha256: []
+file_names: []

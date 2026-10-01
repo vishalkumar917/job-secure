@@ -1,0 +1,48 @@
+# Network heuristics. None of these prove maliciousness on their own; they are
+# indicators combined with other evidence by the risk-scoring model.
+
+# Remote ports frequently associated with default C2/backdoor configurations or
+# anonymisation networks. Legitimate services can use them too.
+suspicious_remote_ports:
+  4444: default Metasploit/Meterpreter handler port
+  1337: commonly used by hobbyist backdoors / C2 frameworks
+  31337: historical backdoor ("elite") port
+  6666: IRC / historical botnet C2
+  6667: IRC (historical botnet C2 channel)
+  5555: Android Debug Bridge / common RAT default
+  8888: common C2/test-server default
+  9001: Tor ORPort default
+  9050: Tor SOCKS proxy default
+  9150: Tor Browser SOCKS proxy default
+  50050: Cobalt Strike team-server default
+
+# Processes that do not normally make outbound network connections. A
+# connection from these is an anomaly worth reviewing.
+unexpected_network_processes:
+  - notepad.exe
+  - calc.exe
+  - mspaint.exe
+  - write.exe
+  - rundll32.exe
+  - regsvr32.exe
+  - mshta.exe
+  - wscript.exe
+  - cscript.exe
+  - certutil.exe
+  - lsass.exe
+  - winlogon.exe
+  - csrss.exe
+  - smss.exe
+  - wininit.exe
+  - services.exe
+  - conhost.exe
+  - cmd.exe
+
+# Processes where an outbound connection is plausible but still worth
+# highlighting when other indicators exist.
+scripting_network_processes:
+  - powershell.exe
+  - pwsh.exe
+  - bitsadmin.exe
+  - msbuild.exe
+  - installutil.exe

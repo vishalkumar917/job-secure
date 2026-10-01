@@ -1,0 +1,50 @@
+[
+ {
+  "PID": 4528,
+  "Process": "svchost.exe",
+  "Value": 20,
+  "Privilege": "SeDebugPrivilege",
+  "Attributes": "Present,Enabled",
+  "Description": ""
+ },
+ {
+  "PID": 4528,
+  "Process": "svchost.exe",
+  "Value": 23,
+  "Privilege": "SeChangeNotifyPrivilege",
+  "Attributes": "Present,Enabled,Default",
+  "Description": ""
+ },
+ {
+  "PID": 4388,
+  "Process": "powershell.exe",
+  "Value": 20,
+  "Privilege": "SeDebugPrivilege",
+  "Attributes": "Present",
+  "Description": ""
+ },
+ {
+  "PID": 4388,
+  "Process": "powershell.exe",
+  "Value": 23,
+  "Privilege": "SeChangeNotifyPrivilege",
+  "Attributes": "Present,Enabled,Default",
+  "Description": ""
+ },
+ {
+  "PID": 5120,
+  "Process": "rundll32.exe",
+  "Value": 23,
+  "Privilege": "SeChangeNotifyPrivilege",
+  "Attributes": "Present,Enabled,Default",
+  "Description": ""
+ },
+ {
+  "PID": 1868,
+  "Process": "MsMpEng.exe",
+  "Value": 20,
+  "Privilege": "SeDebugPrivilege",
+  "Attributes": "Present,Enabled",
+  "Description": ""
+ }
+]

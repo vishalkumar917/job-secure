@@ -1,0 +1,16 @@
+[
+ {
+  "Offset": 1972800,
+  "PID": 4528,
+  "Rule": "Reflective_Loader_Export_String",
+  "Component": "$s1",
+  "Value": "5265666c6563746976654c6f61646572"
+ },
+ {
+  "Offset": 495853312,
+  "PID": 4388,
+  "Rule": "PowerShell_Download_Cradle_Strings",
+  "Component": "$a",
+  "Value": "446f776e6c6f6164537472696e67"
+ }
+]

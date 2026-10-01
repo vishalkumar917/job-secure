@@ -1,0 +1,58 @@
+[
+ {
+  "PID": 4528,
+  "Process": "svchost.exe",
+  "Start VPN": 1966080,
+  "End VPN": 2097151,
+  "Tag": "VadS",
+  "Protection": "PAGE_EXECUTE_READWRITE",
+  "CommitCharge": 32,
+  "PrivateMemory": 1,
+  "File output": "Disabled",
+  "Notes": "MZ header",
+  "Hexdump": "4d 5a 90 00 03 00 00 00 04 00 00 00 ff ff 00 00  MZ..............\nb8 00 00 00 00 00 00 00 40 00 00 00 00 00 00 00  ........@.......\n00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................\n00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................",
+  "Disasm": "0x1e0000: dec ebp\n0x1e0001: pop edx\n0x1e0002: nop"
+ },
+ {
+  "PID": 4528,
+  "Process": "svchost.exe",
+  "Start VPN": 2752512,
+  "End VPN": 2756607,
+  "Tag": "VadS",
+  "Protection": "PAGE_EXECUTE_READWRITE",
+  "CommitCharge": 1,
+  "PrivateMemory": 1,
+  "File output": "Disabled",
+  "Notes": null,
+  "Hexdump": "fc 48 83 e4 f0 e8 00 00 00 00 00 00 00 00 00 00  .H..............\n00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................\n00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................\n00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................",
+  "Disasm": "0x2a0000: cld\n0x2a0001: and rsp, 0xfffffffffffffff0\n0x2a0005: call 0x2a00ca"
+ },
+ {
+  "PID": 1868,
+  "Process": "MsMpEng.exe",
+  "Start VPN": 2385792532480,
+  "End VPN": 2385792598015,
+  "Tag": "VadS",
+  "Protection": "PAGE_EXECUTE_READWRITE",
+  "CommitCharge": 16,
+  "PrivateMemory": 1,
+  "File output": "Disabled",
+  "Notes": null,
+  "Hexdump": "48 89 5c 24 08 57 48 83 ec 20 48 8b d9 e8 00 00  H.\\$.WH.. H.....\n00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................\n00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................\n00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................",
+  "Disasm": "mov qword ptr [rsp + 8], rbx\npush rdi\nsub rsp, 0x20"
+ },
+ {
+  "PID": 3700,
+  "Process": "chrome.exe",
+  "Start VPN": 1935419899904,
+  "End VPN": 1935420162047,
+  "Tag": "VadS",
+  "Protection": "PAGE_EXECUTE_READ",
+  "CommitCharge": 64,
+  "PrivateMemory": 1,
+  "File output": "Disabled",
+  "Notes": null,
+  "Hexdump": "00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................\n00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................\n00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................\n00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................",
+  "Disasm": "add byte ptr [rax], al"
+ }
+]

@@ -1,0 +1,8 @@
+{
+  "name": "MemTrace synthetic demo case",
+  "version": "1.0",
+  "notice": "DEMO DATA - NOT REAL FORENSIC EVIDENCE. Synthetic Volatility 3-format JSON for demonstration only.",
+  "scenario": "A user opens a macro-enabled document; WINWORD spawns encoded PowerShell, which retrieves a second stage, drops a masquerading svchost.exe in C:\\Users\\Public and launches rundll32 with a DLL from %TEMP%. The fake svchost shows injected executable memory with a PE header, a C2-like connection and a handle to lsass.exe. A child process is unlinked from the active list.",
+  "addresses": "All external IPs are RFC 5737 documentation addresses; domains use the RFC 2606 .example TLD.",
+  "generated_by": "scripts/generate_demo_data.py"
+}
