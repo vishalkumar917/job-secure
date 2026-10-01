@@ -1,0 +1,8 @@
+# Normalise line endings; files executed or parsed inside Linux containers must stay LF
+* text=auto
+*.sh text eol=lf
+Dockerfile text eol=lf
+*.conf text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.png binary
