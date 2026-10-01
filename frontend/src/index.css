@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+/* SOC dark theme. Severity colours use a fixed status palette and always ship with a text label. */
+@theme {
+  --color-page: #0b0e12;
+  --color-surface: #13171d;
+  --color-surface-2: #1a1f27;
+  --color-surface-3: #222833;
+  --color-line: #262d38;
+  --color-line-strong: #343c4a;
+  --color-ink: #f2f4f7;
+  --color-ink-2: #c3c8d2;
+  --color-muted: #8a93a3;
+  --color-accent: #3987e5;
+  --color-accent-strong: #2a78d6;
+  --color-sev-critical: #d03b3b;
+  --color-sev-high: #ec835a;
+  --color-sev-medium: #fab219;
+  --color-sev-low: #3987e5;
+  --color-sev-info: #8a93a3;
+  --color-good: #0ca30c;
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "Cascadia Code", Consolas, monospace;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--color-page);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-line-strong);
+  border-radius: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Rendered Markdown in the AI assistant / summaries */
+.md h4 {
+  font-weight: 600;
+  margin: 0.9rem 0 0.35rem;
+  color: var(--color-ink);
+}
+.md p {
+  margin: 0.35rem 0;
+}
+.md ul,
+.md ol {
+  margin: 0.35rem 0 0.35rem 1.25rem;
+}
+.md ul {
+  list-style: disc;
+}
+.md ol {
+  list-style: decimal;
+}
+.md li {
+  margin: 0.15rem 0;
+}
+.md code {
+  font-family: var(--font-mono);
+  font-size: 0.82em;
+  background: var(--color-surface-3);
+  padding: 0.05rem 0.3rem;
+  border-radius: 4px;
+  word-break: break-all;
+}
+.md blockquote {
+  border-left: 3px solid var(--color-sev-critical);
+  background: rgb(208 59 59 / 0.1);
+  padding: 0.4rem 0.75rem;
+  margin: 0.4rem 0;
+  border-radius: 4px;
+}
+.md hr {
+  border-color: var(--color-line);
+  margin: 0.75rem 0;
+}
