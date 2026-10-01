@@ -1,0 +1,63 @@
+# docker compose up --build   ->  UI: http://localhost:8080   API + OpenAPI docs: http://localhost:8000/docs
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: memtrace
+      POSTGRES_USER: memtrace
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-memtrace-dev-password}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U memtrace -d memtrace"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      DATABASE_URL: postgresql+psycopg://memtrace:${POSTGRES_PASSWORD:-memtrace-dev-password}@postgres:5432/memtrace
+      DATA_DIR: /data
+      VOLATILITY_SYMBOLS_DIR: /symbols
+      CORS_ORIGINS: '["http://localhost:8080"]'
+      TMPDIR: /data/tmp           # large multipart uploads spool to the evidence volume, not RAM
+    volumes:
+      - evidence:/data            # evidence store, raw plugin outputs, reports
+      - symbols:/symbols          # optional offline Windows symbol packs
+      - volcache:/home/app/.cache/volatility3
+    ports:
+      - "127.0.0.1:${BACKEND_PORT:-8000}:8000"     # API + OpenAPI docs (/docs), bound to localhost only
+    depends_on:
+      postgres:
+        condition: service_healthy
+    # Isolation for parsing untrusted memory images
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+    cap_drop: [ALL]
+    mem_limit: ${BACKEND_MEM_LIMIT:-8g}
+    pids_limit: 256
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "127.0.0.1:${FRONTEND_PORT:-8080}:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  pgdata:
+  evidence:
+  symbols:
+  volcache:
