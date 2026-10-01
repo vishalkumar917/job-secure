@@ -1,0 +1,6 @@
+[
+  {"PID": 4, "PPID": 0, "ImageFileName": "System", "Offset(V)": 18446708889337476992, "Threads": 120, "Handles": null, "SessionId": "N/A", "Wow64": false, "CreateTime": "2024-05-01T09:00:00+00:00", "ExitTime": null, "File output": "Disabled"},
+  {"PID": 700, "PPID": 600, "ImageFileName": "services.exe", "Offset(V)": "0xffff8a0012345080", "Threads": 7, "Handles": 600, "SessionId": 0, "Wow64": false, "CreateTime": "2024-05-01 09:00:05.000000 UTC", "ExitTime": "1601-01-01T00:00:00+00:00", "File output": "Disabled"},
+  {"PID": "N/A", "PPID": 1, "ImageFileName": "broken"},
+  {"PID": 812, "PPID": 700, "ImageFileName": "VeryLongProces", "Offset(V)": 123456, "Threads": 3, "Handles": 50, "SessionId": 1, "Wow64": true, "CreateTime": "2024-05-01T09:10:00Z", "ExitTime": null}
+]

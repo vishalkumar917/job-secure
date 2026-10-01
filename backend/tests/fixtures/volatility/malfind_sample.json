@@ -1,0 +1,8 @@
+[
+  {"PID": 900, "Process": "inject.exe", "Start VPN": 2031616, "End VPN": 2162687, "Tag": "VadS", "Protection": "PAGE_EXECUTE_READWRITE", "CommitCharge": 32, "PrivateMemory": 1, "File output": "Disabled", "Notes": null,
+   "Hexdump": "4d 5a 90 00 03 00 00 00 04 00 00 00 ff ff 00 00  MZ..............\nb8 00 00 00 00 00 00 00 40 00 00 00 00 00 00 00  ........@.......", "Disasm": "dec ebp"},
+  {"PID": 900, "Process": "inject.exe", "Start VPN": "0x2a0000", "End VPN": "0x2a0fff", "Tag": "VadS", "Protection": "PAGE_EXECUTE_READ", "CommitCharge": 1, "PrivateMemory": 1,
+   "Hexdump": "fc 48 83 e4 f0 e8 00 00 00 00 00 00 00 00 00 00  .H..............", "Disasm": "cld"},
+  {"PID": 901, "Process": "zero.exe", "Start VPN": 4096, "End VPN": 8191, "Tag": "VadS", "Protection": "PAGE_EXECUTE_READWRITE", "CommitCharge": 1, "PrivateMemory": 1,
+   "Hexdump": "00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................", "Disasm": ""}
+]
