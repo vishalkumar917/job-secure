@@ -136,12 +136,15 @@ throughput. The `JobRunner` interface can be swapped for Celery in a multi-node 
 │   ├── Dockerfile, requirements*.txt, pyproject.toml
 ├── frontend/
 │   ├── src/
-│   │   ├── components/     layout/, ui/ (cards, badges, DataTable, dialogs, safe Markdown), charts/, process/ (ProcessTree, ExplanationPanel)
-│   │   ├── pages/          Login, Dashboard, Investigations, CreateInvestigation, CaseDetail, UploadMemory, AnalysisProgress,
-│   │   │                   Overview, Processes, ProcessDetail, MemoryAnalysis, Network, IocExplorer, Findings, Timeline,
-│   │   │                   Assistant, Reports, Settings
+│   │   ├── components/     layout/ (AppShell, Sidebar, TopBar, Breadcrumbs, SearchCommand, Logo),
+│   │   │                   ui/ (design system: primitives, status badges, feedback states, overlays, DataTable, safe Markdown),
+│   │   │                   forensic/ (MetricCard, RiskGauge/RiskCard, FindingCard, EvidencePanel, AIMessage, Dropzone),
+│   │   │                   charts/, process/ (ProcessTree graph + list, ExplanationPanel)
+│   │   ├── pages/          Login, Dashboard, Investigations, CreateInvestigation (5-step wizard), CaseDetail, UploadMemory,
+│   │   │                   MemoryImages, AnalysisProgress, Overview, Processes, ProcessDetail, MemoryAnalysis, Network,
+│   │   │                   IocExplorer, Findings, Timeline, Assistant, Reports, Settings, Help
 │   │   ├── services/       api.ts, format.ts
-│   │   ├── hooks/          useApi.ts, useAuth.tsx
+│   │   ├── hooks/          useApi.ts, useAuth.tsx, useTheme.tsx (light/dark/system), useToast.tsx, useShell.ts
 │   │   ├── types/          index.ts
 │   │   └── App.tsx, main.tsx, index.css
 │   ├── Dockerfile, nginx.conf, vite.config.ts, package.json
@@ -231,6 +234,9 @@ The most important ones:
    → **svchost.exe (PID 4528)** (score contributors, memory hexdump with `MZ`, lsass handle) → **Memory**
    (note how Defender/Chrome JIT regions are rated low) → **Findings** → click a finding for the explainable
    view → **AI Assistant** ("Why is PID 4528 suspicious?") → **Timeline** → **Reports** (generate PDF).
+
+UI conveniences: **Ctrl+K** (or `/`) opens the command palette to search cases, PIDs, IOCs, findings and reports;
+`[` collapses the sidebar; the sun/moon menu in the top bar switches **light / dark / system** themes (remembered per browser).
 
 Every demo screen, export and report carries **"DEMO DATA - NOT REAL FORENSIC EVIDENCE"**. All external
 addresses are RFC 5737 documentation addresses and all domains are RFC 2606 `.example` names.

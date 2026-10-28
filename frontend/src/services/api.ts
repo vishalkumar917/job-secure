@@ -103,6 +103,14 @@ export async function download(path: string, query?: Query, fallbackName = "down
   setTimeout(() => URL.revokeObjectURL(url), 2000);
 }
 
+/** Fetch a file's text with the bearer token (used for in-app report previews). */
+export async function fetchText(path: string): Promise<string> {
+  const token = tokenStore.get();
+  const res = await fetch(`${BASE}${path}`, { headers: token ? { Authorization: `Bearer ${token}` } : {} });
+  if (!res.ok) throw new ApiError(res.status, `Preview failed (${res.status})`);
+  return res.text();
+}
+
 const A = (analysisId: number) => ({ analysis_id: analysisId });
 
 export const api = {
@@ -121,6 +129,7 @@ export const api = {
     request<Case>("PATCH", `/api/cases/${id}`, { body }),
   custody: (caseId: number) => request<CustodyEvent[]>("GET", `/api/cases/${caseId}/custody`),
 
+  images: (caseId?: number) => request<ImageInfo[]>("GET", "/api/memory", { query: { case_id: caseId } }),
   verifyImage: (id: number) =>
     request<{ match: boolean; intake_sha256: string; current_sha256: string }>("POST", `/api/memory/${id}/verify`),
   startAnalysis: (imageId: number, yara: boolean) => request<Job>("POST", `/api/analysis/${imageId}/start`, { body: { yara } }),

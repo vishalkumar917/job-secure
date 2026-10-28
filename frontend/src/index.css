@@ -1,67 +1,249 @@
 @import "tailwindcss";
+@import "@fontsource-variable/inter/wght.css";
+@import "@fontsource-variable/jetbrains-mono/wght.css";
 
-/* SOC dark theme. Severity colours use a fixed status palette and always ship with a text label. */
+/*
+ * MemTrace design system.
+ *
+ * Semantic tokens only: components use `bg-surface`, `text-ink`, `border-line`, ... and never raw hex.
+ * Dark is the default token set; `:root[data-theme="light"]` redefines the same tokens for light mode.
+ * The resolved theme ("dark" | "light") is stamped on <html> by public/theme-init.js (before first paint)
+ * and by ThemeProvider afterwards, so "system" is resolved in JS and CSS only needs the two sets.
+ *
+ * Severity fills (sev-*) are a fixed status palette shared by both themes; each has a per-theme
+ * text step (sev-*-text) for labels on tinted backgrounds. Severity is never shown by colour alone.
+ */
 @theme {
-  --color-page: #0b0e12;
-  --color-surface: #13171d;
-  --color-surface-2: #1a1f27;
-  --color-surface-3: #222833;
-  --color-line: #262d38;
-  --color-line-strong: #343c4a;
-  --color-ink: #f2f4f7;
-  --color-ink-2: #c3c8d2;
-  --color-muted: #8a93a3;
-  --color-accent: #3987e5;
+  /* surfaces */
+  --color-page: #080b12;
+  --color-sidebar: #0a0e16;
+  --color-surface: #0f141d;
+  --color-surface-2: #151b26;
+  --color-surface-3: #1c2330;
+  --color-overlay: rgb(3 6 12 / 0.66);
+  /* lines */
+  --color-line: #1d2531;
+  --color-line-strong: #2a3443;
+  /* ink */
+  --color-ink: #e8ecf3;
+  --color-ink-2: #b3bccb;
+  --color-muted: #7f8a9c;
+  --color-faint: #566173;
+  /* accent (blue/cyan) */
+  --color-accent: #3d8ff0;
   --color-accent-strong: #2a78d6;
+  --color-accent-text: #7db5f8;
+  --color-accent-soft: rgb(61 143 240 / 0.12);
+  --color-cyan: #22b8cf;
+  /* status */
+  --color-good: #0ca30c;
+  --color-good-text: #4ccb6e;
   --color-sev-critical: #d03b3b;
   --color-sev-high: #ec835a;
   --color-sev-medium: #fab219;
   --color-sev-low: #3987e5;
-  --color-sev-info: #8a93a3;
-  --color-good: #0ca30c;
-  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, "Cascadia Code", Consolas, monospace;
+  --color-sev-info: #7f8a9c;
+  --color-sev-critical-text: #f39090;
+  --color-sev-high-text: #f4a584;
+  --color-sev-medium-text: #f8c95e;
+  --color-sev-low-text: #84b7f2;
+  --color-sev-info-text: #a3acbb;
+  /* chart chrome */
+  --color-chart-grid: #1d2531;
+  --color-chart-axis: #2a3443;
+
+  --font-sans: "Inter Variable", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono Variable", "JetBrains Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
+
+  --shadow-card: 0 1px 0 0 rgb(255 255 255 / 0.025) inset, 0 1px 2px 0 rgb(0 0 0 / 0.35);
+  --shadow-raised: 0 1px 0 0 rgb(255 255 255 / 0.04) inset, 0 8px 24px -6px rgb(0 0 0 / 0.55);
+  --shadow-overlay: 0 24px 64px -12px rgb(0 0 0 / 0.7), 0 0 0 1px rgb(255 255 255 / 0.04);
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --animate-fade-in: fade-in 0.18s var(--ease-out-soft) both;
+  --animate-page-in: page-in 0.32s var(--ease-out-soft) both;
+  --animate-scale-in: scale-in 0.18s var(--ease-out-soft) both;
+  --animate-slide-in-right: slide-in-right 0.26s var(--ease-out-soft) both;
+  --animate-slide-in-left: slide-in-left 0.24s var(--ease-out-soft) both;
+  --animate-toast-in: toast-in 0.26s var(--ease-out-soft) both;
+  --animate-shimmer: shimmer 1.6s linear infinite;
+  --animate-pulse-ring: pulse-ring 2.4s var(--ease-out-soft) infinite;
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes page-in {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes scale-in {
+    from { opacity: 0; transform: translateY(4px) scale(0.98); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes slide-in-right {
+    from { transform: translateX(24px); opacity: 0; }
+    to { transform: none; opacity: 1; }
+  }
+  @keyframes slide-in-left {
+    from { transform: translateX(-100%); }
+    to { transform: none; }
+  }
+  @keyframes toast-in {
+    from { opacity: 0; transform: translateY(10px) scale(0.98); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes shimmer {
+    from { background-position: -400px 0; }
+    to { background-position: 400px 0; }
+  }
+  @keyframes pulse-ring {
+    0% { box-shadow: 0 0 0 0 color-mix(in oklab, currentColor 45%, transparent); }
+    70%, 100% { box-shadow: 0 0 0 6px transparent; }
+  }
 }
 
+/* Light theme: same semantic tokens, designed independently (off-white page, white cards, hairline borders). */
+:root[data-theme="light"] {
+  color-scheme: light;
+  --color-page: #f5f7fa;
+  --color-sidebar: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-2: #f3f5f9;
+  --color-surface-3: #e9edf3;
+  --color-overlay: rgb(15 22 35 / 0.38);
+  --color-line: #e3e8ef;
+  --color-line-strong: #cfd6e1;
+  --color-ink: #0e1522;
+  --color-ink-2: #384355;
+  --color-muted: #647085;
+  --color-faint: #9aa4b4;
+  --color-accent: #1f6fd6;
+  --color-accent-strong: #1a64c4;
+  --color-accent-text: #1658b0;
+  --color-accent-soft: rgb(31 111 214 / 0.08);
+  --color-cyan: #0e93a8;
+  --color-good-text: #157a35;
+  --color-sev-critical-text: #b3261e;
+  --color-sev-high-text: #b14a17;
+  --color-sev-medium-text: #8a5b00;
+  --color-sev-low-text: #1b5fb5;
+  --color-sev-info-text: #556074;
+  --color-chart-grid: #e8ecf2;
+  --color-chart-axis: #cfd6e1;
+  --shadow-card: 0 1px 2px 0 rgb(16 24 40 / 0.04), 0 1px 3px 0 rgb(16 24 40 / 0.04);
+  --shadow-raised: 0 4px 16px -4px rgb(16 24 40 / 0.1), 0 2px 4px -2px rgb(16 24 40 / 0.05);
+  --shadow-overlay: 0 24px 56px -12px rgb(16 24 40 / 0.22), 0 0 0 1px rgb(16 24 40 / 0.06);
+}
+
+/* Layering scale - use as z-(--z-*) */
 :root {
   color-scheme: dark;
+  --z-sticky: 20;
+  --z-sidebar: 30;
+  --z-header: 35;
+  --z-overlay: 40;
+  --z-modal: 50;
+  --z-command: 55;
+  --z-toast: 60;
+  --z-tooltip: 70;
+  --sidebar-w: 268px;
+  --sidebar-w-collapsed: 76px;
+  --topbar-h: 64px;
+}
+
+html {
+  background: var(--color-page);
 }
 
 body {
   background: var(--color-page);
   color: var(--color-ink);
   font-family: var(--font-sans);
+  font-size: 14.5px;
+  line-height: 1.55;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Smooth theme switch: enabled only for the moment of the toggle so normal interactions stay snappy. */
+html.theme-switching,
+html.theme-switching *,
+html.theme-switching *::before,
+html.theme-switching *::after {
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.2s ease, fill 0.25s ease, stroke 0.25s ease !important;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--color-accent) 30%, transparent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 6px;
 }
 
 .tabular {
   font-variant-numeric: tabular-nums;
 }
 
+/* Scrollbars */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line-strong) transparent;
+}
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
 ::-webkit-scrollbar-thumb {
   background: var(--color-line-strong);
-  border-radius: 6px;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 
-/* Rendered Markdown in the AI assistant / summaries */
+/* Skeleton shimmer */
+.skeleton {
+  background-color: var(--color-surface-2);
+  background-image: linear-gradient(90deg, transparent 0, color-mix(in oklab, var(--color-ink) 6%, transparent) 50%, transparent 100%);
+  background-size: 400px 100%;
+  background-repeat: no-repeat;
+  animation: var(--animate-shimmer);
+  border-radius: 6px;
+}
+
+/* Subtle dotted canvas for the process graph */
+.canvas-grid {
+  background-image: radial-gradient(color-mix(in oklab, var(--color-ink) 9%, transparent) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* Rendered Markdown in AI answers / summaries */
+.md {
+  color: var(--color-ink-2);
+  font-size: 14.5px;
+  line-height: 1.7;
+}
 .md h4 {
+  font-size: 15px;
   font-weight: 600;
-  margin: 0.9rem 0 0.35rem;
+  margin: 1rem 0 0.4rem;
   color: var(--color-ink);
 }
 .md p {
-  margin: 0.35rem 0;
+  margin: 0.45rem 0;
 }
 .md ul,
 .md ol {
-  margin: 0.35rem 0 0.35rem 1.25rem;
+  margin: 0.45rem 0 0.45rem 1.3rem;
 }
 .md ul {
   list-style: disc;
@@ -70,24 +252,43 @@ body {
   list-style: decimal;
 }
 .md li {
-  margin: 0.15rem 0;
+  margin: 0.3rem 0;
+  padding-left: 0.15rem;
+}
+.md li::marker {
+  color: var(--color-faint);
+}
+.md strong {
+  color: var(--color-ink);
+  font-weight: 600;
 }
 .md code {
   font-family: var(--font-mono);
-  font-size: 0.82em;
+  font-size: 0.84em;
   background: var(--color-surface-3);
-  padding: 0.05rem 0.3rem;
-  border-radius: 4px;
+  padding: 0.1rem 0.35rem;
+  border-radius: 5px;
   word-break: break-all;
 }
 .md blockquote {
   border-left: 3px solid var(--color-sev-critical);
-  background: rgb(208 59 59 / 0.1);
-  padding: 0.4rem 0.75rem;
-  margin: 0.4rem 0;
-  border-radius: 4px;
+  background: color-mix(in oklab, var(--color-sev-critical) 9%, transparent);
+  padding: 0.55rem 0.9rem;
+  margin: 0.5rem 0;
+  border-radius: 0 8px 8px 0;
+  color: var(--color-ink);
 }
 .md hr {
   border-color: var(--color-line);
-  margin: 0.75rem 0;
+  margin: 1rem 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

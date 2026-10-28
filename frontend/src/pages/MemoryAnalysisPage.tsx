@@ -1,91 +1,165 @@
-import { useState } from "react";
+import { Eye, MemoryStick, ScanLine, Sparkles } from "lucide-react";
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { useAnalysis } from "../components/layout/AppLayout";
-import { DataTable } from "../components/ui/DataTable";
-import { Card, Drawer, ErrorState, Loading, Mono, Notice, PageHeader, SeverityBadge } from "../components/ui";
+import { EvidencePanel, FindingCard } from "../components/forensic/cards";
+import { useAnalysis, useAnalysisCrumbs } from "../components/layout/AppLayout";
+import { ExplanationPanel } from "../components/process/ExplanationPanel";
+import {
+  Badge, Button, Card, cx, DataTable, Drawer, EmptyState, ErrorState, KeyValue, Mono, Notice, PageHeader, SectionHeader, SegmentedControl,
+  SeverityBadge, sevRank, Skeleton, SkeletonTable,
+} from "../components/ui";
 import { useApi } from "../hooks/useApi";
 import { api } from "../services/api";
-import { confidenceLabel } from "../services/format";
-import type { Finding, Region } from "../types";
+import type { Finding, Region, YaraMatch } from "../types";
+
+type RegionFilter = "all" | "exec" | "rwx" | "pe" | "malfind" | "vadinfo";
+const isExec = (r: Region) => (r.protection ?? "").includes("EXECUTE");
+const isRwx = (r: Region) => (r.protection ?? "").includes("EXECUTE_READWRITE") || (r.protection ?? "").includes("EXECUTE_WRITECOPY");
 
 export default function MemoryAnalysisPage() {
   const { jobId } = useAnalysis();
+  useAnalysisCrumbs({ label: "Memory Analysis" });
   const regions = useApi(() => api.regions(jobId), [jobId]);
   const findings = useApi(() => api.findings(jobId, { category: "memory" }), [jobId]);
   const yara = useApi(() => api.yaraMatches(jobId), [jobId]);
-  const [open, setOpen] = useState<Region | null>(null);
+  const [filter, setFilter] = useState<RegionFilter>("all");
+  const [region, setRegion] = useState<Region | null>(null);
+  const [explain, setExplain] = useState<Finding | null>(null);
 
+  const all = regions.data ?? [];
+  const mem = useMemo(() => [...(findings.data ?? [])].sort((a, b) => sevRank(a.severity) - sevRank(b.severity) || b.confidence - a.confidence), [findings.data]);
   const reasonFor = (r: Region): Finding | undefined =>
-    (findings.data ?? []).filter((f) => f.pid === r.pid && f.evidence.some((e) => e.ref === `MEM:${r.pid}:${r.start}`))
-      .sort((a, b) => b.confidence - a.confidence)[0];
+    mem.filter((f) => f.pid === r.pid && f.evidence.some((e) => e.ref === `MEM:${r.pid}:${r.start}`)).sort((a, b) => b.confidence - a.confidence)[0];
+  const suspicious = all.filter((r) => reasonFor(r) || r.has_pe_header)
+    .sort((a, b) => sevRank(reasonFor(a)?.severity ?? "info") - sevRank(reasonFor(b)?.severity ?? "info") || Number(b.has_pe_header) - Number(a.has_pe_header)).slice(0, 6);
+  const rows = all.filter((r) => filter === "all" || (filter === "exec" ? isExec(r) : filter === "rwx" ? isRwx(r) : filter === "pe" ? r.has_pe_header : r.source.endsWith(filter)));
+
+  const stats = [
+    { label: "Regions recorded", value: all.length },
+    { label: "Executable", value: all.filter(isExec).length },
+    { label: "RWX permissions", value: all.filter(isRwx).length, warn: true },
+    { label: "PE headers (MZ)", value: all.filter((r) => r.has_pe_header).length, warn: true },
+    { label: "Injection indicators", value: mem.length, warn: true },
+    { label: "YARA matches", value: yara.data?.length ?? 0, warn: true },
+  ];
 
   return (
     <>
-      <PageHeader title="Memory analysis" subtitle="malfind (private executable memory) and targeted vadinfo regions, with injection indicators and YARA matches." />
-      <div className="mb-4"><Notice tone="warn">Injection findings are <b>indicators, not definitive proof of malware</b>. JIT compilers (.NET, browsers), security products and packers also create executable private memory.</Notice></div>
+      <PageHeader title="Memory Analysis" subtitle="malfind (private executable memory) and targeted vadinfo regions, with injection indicators, VAD analysis and YARA matches." />
+      <Notice tone="warn" className="mb-8">Injection findings are <b>indicators, not definitive proof of malware</b>. JIT compilers (.NET, browsers), security products and packers also create executable private memory.</Notice>
 
-      <Card title="Injection indicators" className="mb-4">
-        {findings.loading && !findings.data ? <Loading /> : findings.error ? <ErrorState message={findings.error} /> : (
-          <DataTable<Finding>
-            rows={findings.data ?? []} rowKey={(f) => f.id} initialSort={{ key: "confidence", dir: "desc" }} empty="No memory-injection indicators."
-            columns={[
-              { key: "process_name", header: "Process", render: (f) => <Link className="text-accent hover:underline" to={`/analysis/${jobId}/processes/${f.pid}`}>{f.process_name}</Link> },
-              { key: "pid", header: "PID", className: "tabular" },
-              { key: "title", header: "Finding", render: (f) => <div><div className="text-ink">{f.title}</div><div className="text-xs text-muted">{f.finding}</div></div> },
-              { key: "region", header: "Memory region / protection", sortValue: (f) => f.evidence[0]?.value,
-                render: (f) => <div className="space-y-0.5">{f.evidence.filter((e) => e.artifact === "memory_region").slice(0, 3).map((e, i) => <Mono key={i} className="block">{e.value}</Mono>)}</div> },
-              { key: "severity", header: "Severity", render: (f) => <SeverityBadge severity={f.severity} /> },
-              { key: "confidence", header: "Confidence", render: (f) => `${confidenceLabel(f.confidence)} (${f.confidence})` },
-            ]}
-          />
-        )}
-      </Card>
-
-      <Card title="Memory regions" className="mb-4">
-        {regions.loading && !regions.data ? <Loading /> : regions.error ? <ErrorState message={regions.error} /> : (
-          <DataTable<Region>
-            rows={regions.data ?? []} rowKey={(r) => r.id} onRowClick={setOpen} empty="No regions recorded."
-            rowClassName={(r) => (r.has_pe_header ? "bg-sev-high/10" : undefined)}
-            columns={[
-              { key: "process_name", header: "Process", render: (r) => <span className="text-ink">{r.process_name} <span className="text-muted tabular">({r.pid})</span></span> },
-              { key: "source", header: "Source" },
-              { key: "start", header: "Region", render: (r) => <Mono>{r.start} - {r.end}</Mono> },
-              { key: "protection", header: "Protection" },
-              { key: "tag", header: "Tag" },
-              { key: "private_memory", header: "Private", render: (r) => String(r.private_memory ?? "?") },
-              { key: "has_pe_header", header: "PE header", sortValue: (r) => Number(r.has_pe_header), render: (r) => r.has_pe_header ? <span className="font-semibold text-sev-high">MZ</span> : "-" },
-              { key: "reason", header: "Reason", sortValue: (r) => reasonFor(r)?.title, render: (r) => <span className="text-xs text-ink-2">{reasonFor(r)?.title ?? (r.mapped_file ? `mapped: ${r.mapped_file}` : "-")}</span> },
-            ]}
-          />
-        )}
-      </Card>
-
-      <Card title="YARA matches">
-        {yara.data && yara.data.length > 0 ? (
-          <table className="w-full text-sm">
-            <thead className="text-left text-xs uppercase text-muted"><tr><th className="py-1 pr-3">Rule</th><th className="pr-3">Process</th><th className="pr-3">Offset</th><th className="pr-3">Evidence</th><th>Severity</th></tr></thead>
-            <tbody className="divide-y divide-line">{yara.data.map((y) => (
-              <tr key={y.id}><td className="py-1.5 pr-3 font-medium text-ink">{y.rule_name}</td><td className="pr-3">{y.process_name} ({y.pid})</td>
-                <td className="pr-3"><Mono>{y.offset}</Mono></td><td className="pr-3"><Mono>{y.component} {y.matched_value}</Mono></td><td><SeverityBadge severity={y.severity} /></td></tr>
-            ))}</tbody>
-          </table>
-        ) : <p className="text-sm text-muted">No YARA matches, or YARA scanning was not performed for this analysis.</p>}
-        <p className="mt-2 text-xs text-muted">A YARA match alone does not prove malicious activity; it depends entirely on rule quality.</p>
-      </Card>
-
-      <Drawer open={!!open} onClose={() => setOpen(null)} title={open && <span>{open.process_name} ({open.pid}) - <Mono>{open.start}</Mono></span>}>
-        {open && (
-          <div className="space-y-3 text-sm">
-            <div className="grid grid-cols-2 gap-2 text-ink-2">
-              <div>Protection: <b className="text-ink">{open.protection}</b></div><div>Tag: {open.tag}</div>
-              <div>Private: {String(open.private_memory)}</div><div>Commit charge: {open.commit_charge ?? "-"}</div>
-              <div>Source: {open.source}</div><div>PE header: {open.has_pe_header ? "yes" : "no"}</div>
-            </div>
-            {reasonFor(open) && <div className="rounded-lg border border-line p-3"><SeverityBadge severity={reasonFor(open)!.severity} /> <span className="ml-1 text-ink">{reasonFor(open)!.finding}</span></div>}
-            {open.hexdump && <><h4 className="text-xs uppercase text-muted">Hexdump</h4><pre className="overflow-x-auto rounded bg-page p-3 font-mono text-xs">{open.hexdump}</pre></>}
-            {open.disasm && <><h4 className="text-xs uppercase text-muted">Disassembly</h4><pre className="overflow-x-auto rounded bg-page p-3 font-mono text-xs">{open.disasm}</pre></>}
+      <Card className="mb-10">
+        {regions.loading && !regions.data ? <Skeleton className="h-14" /> : (
+          <div className="grid grid-cols-2 gap-x-8 gap-y-6 sm:grid-cols-3 xl:grid-cols-6">
+            {stats.map((s) => (
+              <div key={s.label}>
+                <div className="text-[13px] text-muted">{s.label}</div>
+                <div className={cx("mt-1 text-2xl font-semibold tracking-[-0.02em] tabular", s.warn && s.value ? "text-sev-high-text" : "text-ink")}>{s.value}</div>
+              </div>
+            ))}
           </div>
         )}
+      </Card>
+
+      <section className="mb-12">
+        <SectionHeader title="Injection indicators" subtitle="Memory-category findings from the rule engine, highest severity first" />
+        {findings.loading && !findings.data ? <div className="grid gap-4 xl:grid-cols-2">{[0, 1].map((i) => <Skeleton key={i} className="h-48 rounded-xl" />)}</div>
+          : findings.error ? <ErrorState compact message={findings.error} onRetry={findings.reload} />
+            : mem.length === 0 ? <Card><EmptyState compact title="No memory-injection indicators" icon={<MemoryStick />} /></Card>
+              : <div className="grid gap-4 xl:grid-cols-2">{mem.map((f) => <FindingCard key={f.id} finding={f} jobId={jobId} onOpen={setExplain} />)}</div>}
+      </section>
+
+      {suspicious.length > 0 && (
+        <section className="mb-12">
+          <SectionHeader title="Suspicious memory regions" subtitle="Regions attributed to a finding or carrying a PE header" />
+          <div className="grid gap-5 xl:grid-cols-2">
+            {suspicious.map((r) => {
+              const f = reasonFor(r);
+              return (
+                <EvidencePanel key={r.id} title={r.start} severity={f?.severity ?? "high"}
+                  eyebrow={<><Badge tone="accent">{r.source.replace("windows.", "")}</Badge><span>Memory region</span></>}
+                  actions={<>
+                    <Button size="sm" icon={<Eye />} onClick={() => setRegion(r)}>View evidence</Button>
+                    {f && <Button size="sm" variant="subtle" icon={<Sparkles />} onClick={() => setExplain(f)}>Explain with AI</Button>}
+                  </>}>
+                  <KeyValue cols={2} rows={[
+                    ["Protection", <span key="p" className={cx("font-mono text-[13px]", isRwx(r) && "font-semibold text-sev-high-text")}>{r.protection ?? "?"}</span>],
+                    ["Status", <Badge key="s" tone="danger">Suspicious</Badge>],
+                    ["Process", <Link key="pr" to={`/analysis/${jobId}/processes/${r.pid}`} className="font-medium text-ink hover:text-accent-text hover:underline">{r.process_name} ({r.pid})</Link>],
+                    ["Range", <Mono key="r" nowrap>{r.start} – {r.end}</Mono>],
+                  ]} />
+                  <p className="mt-5 text-sm leading-relaxed text-ink-2">
+                    <span className="font-medium text-ink">Reason: </span>
+                    {f ? f.title : "PE header in a memory region"}{r.has_pe_header && f && " - region begins with an MZ header"}; associated with PID {r.pid}.
+                  </p>
+                </EvidencePanel>
+              );
+            })}
+          </div>
+        </section>
+      )}
+
+      <section className="mb-12">
+        <SectionHeader title="VAD analysis" subtitle="Every recorded region. Select a row for bytes and disassembly." />
+        <Card pad={false}>
+          {regions.loading && !regions.data ? <SkeletonTable /> : regions.error ? <div className="p-6"><ErrorState compact message={regions.error} onRetry={regions.reload} /></div> : (
+            <DataTable<Region>
+              rows={rows} rowKey={(r) => r.id} onRowClick={setRegion} empty="No regions match this filter." searchPlaceholder="Search process, address, tag..."
+              rowAccent={(r) => (reasonFor(r) ? "var(--color-sev-high)" : r.has_pe_header ? "var(--color-sev-medium)" : undefined)}
+              toolbar={<SegmentedControl label="Region filter" value={filter} onChange={setFilter} options={[
+                { key: "all", label: "All" }, { key: "exec", label: "Executable" }, { key: "rwx", label: "RWX" }, { key: "pe", label: "PE header" },
+                { key: "malfind", label: "malfind" }, { key: "vadinfo", label: "vadinfo" },
+              ]} />}
+              columns={[
+                { key: "process_name", header: "Process", render: (r) => <span className="font-medium text-ink">{r.process_name} <span className="font-mono text-[13px] font-normal text-muted">{r.pid}</span></span> },
+                { key: "start", header: "Region", render: (r) => <Mono nowrap>{r.start} – {r.end}</Mono> },
+                { key: "protection", header: "Protection", render: (r) => <span className={cx("font-mono text-xs", isRwx(r) ? "font-semibold text-sev-high-text" : "text-ink-2")}>{r.protection ?? "?"}</span> },
+                { key: "source", header: "Source", render: (r) => <Badge>{r.source.replace("windows.", "")}</Badge> },
+                { key: "tag", header: "Tag", render: (r) => <span className="font-mono text-xs">{r.tag ?? "-"}</span> },
+                { key: "has_pe_header", header: "PE", sortValue: (r) => Number(r.has_pe_header), render: (r) => r.has_pe_header ? <Badge tone="warning">MZ</Badge> : <span className="text-faint">-</span> },
+                { key: "reason", header: "Reason", sortValue: (r) => reasonFor(r)?.title, render: (r) => <span className="text-[13px] text-ink-2">{reasonFor(r)?.title ?? (r.mapped_file ? `mapped: ${r.mapped_file}` : "-")}</span> },
+              ]} />
+          )}
+        </Card>
+      </section>
+
+      <section id="yara" className="scroll-mt-40">
+        <SectionHeader title="YARA matches" subtitle="A match depends entirely on rule quality - it is an indicator, not proof." />
+        <Card pad={false}>
+          <DataTable<YaraMatch> rows={yara.data ?? []} loading={yara.loading && !yara.data} rowKey={(y) => y.id} search={false}
+            empty={<EmptyState compact title="No YARA matches" icon={<ScanLine />}>No rule matched, or YARA scanning was not performed for this analysis.</EmptyState>}
+            columns={[
+              { key: "rule_name", header: "Rule", render: (y) => <span className="font-medium text-ink">{y.rule_name}</span> },
+              { key: "process_name", header: "Process", render: (y) => y.pid != null ? <Link to={`/analysis/${jobId}/processes/${y.pid}`} className="text-ink-2 hover:text-accent-text hover:underline">{y.process_name} ({y.pid})</Link> : "-" },
+              { key: "offset", header: "Offset", render: (y) => <Mono>{y.offset}</Mono> },
+              { key: "matched_value", header: "Matched", render: (y) => <Mono>{y.component} {y.matched_value}</Mono> },
+              { key: "severity", header: "Severity", sortValue: (y) => sevRank(y.severity), render: (y) => <SeverityBadge severity={y.severity} /> },
+            ]} />
+        </Card>
+      </section>
+
+      <Drawer open={!!region} onClose={() => setRegion(null)} width="xl"
+        title={region && <span className="font-mono">{region.start} – {region.end}</span>} subtitle={region && `${region.process_name} (PID ${region.pid}) · ${region.source}`}
+        footer={region && <>
+          {reasonFor(region) && <Button variant="subtle" icon={<Sparkles />} onClick={() => { const f = reasonFor(region)!; setRegion(null); setExplain(f); }}>Explain with AI</Button>}
+          <Button to={`/analysis/${jobId}/processes/${region.pid}?tab=memory`}>Open process</Button>
+        </>}>
+        {region && (
+          <div className="space-y-7">
+            <KeyValue cols={2} rows={[
+              ["Protection", <span key="p" className="font-mono text-[13px] font-semibold">{region.protection}</span>], ["VAD tag", region.tag],
+              ["Private memory", String(region.private_memory)], ["Commit charge", region.commit_charge ?? "-"],
+              ["PE header", region.has_pe_header ? "Yes (MZ)" : "No"], ["Mapped file", region.mapped_file ? <Mono key="m">{region.mapped_file}</Mono> : "None"],
+            ]} />
+            {reasonFor(region) && <div className="flex items-start gap-3 rounded-xl border border-line bg-surface-2/60 p-4"><SeverityBadge severity={reasonFor(region)!.severity} /><span className="text-sm text-ink">{reasonFor(region)!.finding}</span></div>}
+            {region.hexdump && <div><h4 className="mb-2 text-xs font-semibold uppercase tracking-[0.06em] text-muted">Hexdump</h4><pre className="overflow-x-auto rounded-xl border border-line bg-page/60 p-4 font-mono text-xs leading-relaxed text-ink-2">{region.hexdump}</pre></div>}
+            {region.disasm && <div><h4 className="mb-2 text-xs font-semibold uppercase tracking-[0.06em] text-muted">Disassembly</h4><pre className="overflow-x-auto rounded-xl border border-line bg-page/60 p-4 font-mono text-xs leading-relaxed text-muted">{region.disasm}</pre></div>}
+            {!region.hexdump && !region.disasm && <p className="text-sm text-muted">No bytes were captured for this region (vadinfo records metadata only).</p>}
+          </div>
+        )}
+      </Drawer>
+      <Drawer open={!!explain} onClose={() => setExplain(null)} title={explain?.title} subtitle={explain && `F-${explain.id} · ${explain.rule_id}`}>
+        {explain && <ExplanationPanel finding={explain} />}
       </Drawer>
     </>
   );

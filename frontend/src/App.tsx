@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { AnalysisLayout, AppLayout } from "./components/layout/AppLayout";
-import { Loading } from "./components/ui";
+import { LogoMark } from "./components/layout/Logo";
+import { Spinner } from "./components/ui";
 import { useAuth } from "./hooks/useAuth";
 import AnalysisProgressPage from "./pages/AnalysisProgressPage";
 import AssistantPage from "./pages/AssistantPage";
@@ -8,10 +9,12 @@ import CaseDetailPage from "./pages/CaseDetailPage";
 import CreateInvestigationPage from "./pages/CreateInvestigationPage";
 import DashboardPage from "./pages/DashboardPage";
 import FindingsPage from "./pages/FindingsPage";
+import HelpPage from "./pages/HelpPage";
 import InvestigationsPage from "./pages/InvestigationsPage";
 import IocExplorerPage from "./pages/IocExplorerPage";
 import LoginPage from "./pages/LoginPage";
 import MemoryAnalysisPage from "./pages/MemoryAnalysisPage";
+import MemoryImagesPage from "./pages/MemoryImagesPage";
 import NetworkPage from "./pages/NetworkPage";
 import OverviewPage from "./pages/OverviewPage";
 import ProcessDetailPage from "./pages/ProcessDetailPage";
@@ -24,7 +27,14 @@ import UploadMemoryPage from "./pages/UploadMemoryPage";
 export default function App() {
   const { user, ready } = useAuth();
   const location = useLocation();
-  if (!ready) return <Loading label="Starting..." />;
+  if (!ready) {
+    return (
+      <div className="flex min-h-screen flex-col items-center justify-center gap-5 bg-page" role="status" aria-label="Starting MemTrace">
+        <LogoMark className="h-12 w-12" />
+        <Spinner className="h-5 w-5 text-muted" />
+      </div>
+    );
+  }
   if (!user) {
     return (
       <Routes>
@@ -42,7 +52,9 @@ export default function App() {
         <Route path="investigations/new" element={<CreateInvestigationPage />} />
         <Route path="investigations/:caseId" element={<CaseDetailPage />} />
         <Route path="investigations/:caseId/upload" element={<UploadMemoryPage />} />
+        <Route path="memory-images" element={<MemoryImagesPage />} />
         <Route path="settings" element={<SettingsPage />} />
+        <Route path="help" element={<HelpPage />} />
         <Route path="analysis/:jobId" element={<AnalysisLayout />}>
           <Route index element={<OverviewPage />} />
           <Route path="progress" element={<AnalysisProgressPage />} />
